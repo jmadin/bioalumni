@@ -1,0 +1,39 @@
+<% if @alums.blank? %>
+	<p class="alert alert-danger">No alumni yet.</p>
+<% else %>
+
+<%= will_paginate @alums %>
+
+<ul class="list-group">
+
+  <% @alums.each do |alum| %>
+    <li class="list-group-item">              
+      <div class="row">
+        <div class="col-md-3">
+          <%= alum.first_name %>
+        </div>
+        <div class="col-md-3">
+          <%= alum.last_name %>
+        </div>
+        <div class="col-md-2">
+          <%= alum.dob %>
+        </div>
+        <div class="col-md-2">
+          <%= alum.mq_id %>
+        </div>
+        <div class="col-md-2">
+          <div class="btn-group pull-right">
+            <%= link_to 'Show', alum, class: "btn btn-xs btn-default" %>
+            <%= link_to 'Edit', edit_alum_path(alum), class: "btn btn-xs btn-default" %>
+            <%= link_to 'Delete', alum, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-danger" %>
+          </div>
+        </div>
+      </div>
+    </li>
+  <% end %>
+</ul>
+
+<%= will_paginate @alums %>
+
+<% end %>
+

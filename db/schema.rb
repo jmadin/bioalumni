@@ -11,7 +11,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140715090606) do
+ActiveRecord::Schema.define(version: 20150128043359) do
+
+  create_table "alums", force: true do |t|
+    t.integer  "user_id"
+    t.string   "first_name"
+    t.string   "middle_name"
+    t.string   "last_name"
+    t.string   "sex"
+    t.date     "dob"
+    t.string   "mq_id"
+    t.text     "alum_notes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "alums", ["user_id"], name: "index_alums_on_user_id"
+
+  create_table "careers", force: true do |t|
+    t.integer  "user_id"
+    t.string   "career_name"
+    t.string   "career_type"
+    t.string   "career_system"
+    t.text     "career_notes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "careers", ["user_id"], name: "index_careers_on_user_id"
 
   create_table "categories", force: true do |t|
     t.string   "category_name"
@@ -20,13 +47,32 @@ ActiveRecord::Schema.define(version: 20140715090606) do
     t.datetime "updated_at"
   end
 
+  create_table "degree_types", force: true do |t|
+    t.string   "degree_type_name"
+    t.text     "degree_type_notes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "degrees", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "alum_id"
+    t.date     "graduation_year"
+    t.string   "thesis_title"
+    t.text     "degree_notes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "degree_type_id"
+  end
+
+  add_index "degrees", ["alum_id"], name: "index_degrees_on_alum_id"
+  add_index "degrees", ["degree_type_id"], name: "index_degrees_on_degree_type_id"
+  add_index "degrees", ["user_id"], name: "index_degrees_on_user_id"
+
   create_table "photos", force: true do |t|
-    t.string   "photo_category"
     t.string   "photo_filename"
-    t.string   "photo_term"
     t.integer  "user_id"
     t.date     "photo_date"
-    t.string   "genus_species"
     t.text     "photo_notes"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -35,10 +81,28 @@ ActiveRecord::Schema.define(version: 20140715090606) do
     t.integer  "photograph_file_size"
     t.datetime "photograph_updated_at"
     t.integer  "category_id"
+    t.integer  "alum_id"
   end
 
+  add_index "photos", ["alum_id"], name: "index_photos_on_alum_id"
   add_index "photos", ["category_id"], name: "index_photos_on_category_id"
   add_index "photos", ["user_id"], name: "index_photos_on_user_id"
+
+  create_table "records", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "alum_id"
+    t.integer  "career_id"
+    t.string   "work_link"
+    t.string   "email"
+    t.string   "phone"
+    t.text     "record_notes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "records", ["alum_id"], name: "index_records_on_alum_id"
+  add_index "records", ["career_id"], name: "index_records_on_career_id"
+  add_index "records", ["user_id"], name: "index_records_on_user_id"
 
   create_table "taggings", force: true do |t|
     t.integer  "tag_id"

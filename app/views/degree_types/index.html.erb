@@ -1,0 +1,31 @@
+
+<div class="page-header">
+  <h1>Degree types</h1>
+</div>
+
+<p><%= link_to 'New Degree type', new_degree_type_path, class: "btn btn-primary" %></p>
+
+<ul class="list-group">
+  <% @degree_types.each do |degree_type| %>
+    <li class="list-group-item">              
+      <div class="row">
+        <div class="col-sm-3">
+          <%= degree_type.degree_type_name %>
+        </div>
+        <div class="col-sm-2">
+          <span class="badge"><%= degree_type.degrees.size %></span>
+        </div>
+        <div class="col-sm-4">
+          <%= degree_type.degree_type_notes %>
+        </div>
+        <div class="col-sm-3">
+          <div class="btn-group pull-right">        
+            <%= link_to 'Show', degree_type, class: "btn btn-default btn-xs" %>
+            <%= link_to 'Edit', edit_degree_type_path(degree_type), class: "btn btn-default btn-xs" %>
+            <%= link_to 'Delete', degree_type, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-xs" %>
+          </div>
+        </div>
+      </div>
+    </li>
+  <% end %>
+</ul>

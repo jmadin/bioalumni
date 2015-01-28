@@ -1,0 +1,39 @@
+<h1>Listing records</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Alum</th>
+      <th>Career</th>
+      <th>Work link</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Record notes</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @records.each do |record| %>
+      <tr>
+        <td><%= record.user %></td>
+        <td><%= record.alum %></td>
+        <td><%= record.career %></td>
+        <td><%= record.work_link %></td>
+        <td><%= record.email %></td>
+        <td><%= record.phone %></td>
+        <td><%= record.record_notes %></td>
+        <td><%= link_to 'Show', record %></td>
+        <td><%= link_to 'Edit', edit_record_path(record) %></td>
+        <td><%= link_to 'Destroy', record, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Record', new_record_path %>

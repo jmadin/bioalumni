@@ -1,0 +1,31 @@
+<%= form_for(@degree) do |f| %>
+
+  <%= render 'shared/error_messages', object: @degree %>
+
+  <%#= f.hidden_field :user_id, :value => current_user.id %>
+  <%= f.hidden_field :alum_id, :value => @degree.alum.id %>
+
+  <div class="form-group">
+    <%= f.label :degree_name %><br>
+    <%= f.select :degree_type_id, DegreeType.all.map { |u| [u.degree_type_name, u.id] }, {}, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :graduation_date %><br>
+    <%= f.date_select :graduation_year, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :thesis_title %><br>
+    <%= f.text_field :thesis_title, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :supervisor %><br>
+    <%= f.select :user_id, User.all.map { |u| [u.name, u.id] }, {}, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :degree_notes %><br>
+    <%= f.text_area :degree_notes, class: "form-control" %>
+  </div>
+
+  <%= f.submit class: "btn btn-default" %>
+
+<% end %>

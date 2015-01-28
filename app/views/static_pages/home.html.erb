@@ -2,36 +2,34 @@
   <div class="col-md-10 col-md-offset-1">
 
     <div class="jumbotron">
-      <h1>Oldfield<font style="color:orange;"></font></h1>
-      <p>The Department of Biological Sciences photo archive.</p>
+      <h1>Biolumni<font style="color:orange;"></font></h1>
+      <p>The Department of Biological Sciences alumni database.</p>
 
 			<% if signed_in? %>
-		    <div class="row">
-		      <div class="col-md-6">
-	          <div id="tag_cloud">
-	            <% tag_cloud Photo.tag_counts.sort { |x, y| x.name <=> y.name }, %w{s m l} do |tag, css_class| %>
-	              <%= link_to tag.name, tag_path(tag.name), class: css_class, class: "label label-primary"  %>
-	            <% end %>
-	          </div><br>
-		      </div>
-		      <div class="col-md-6">
-		        <%= form_tag photos_path, :method => 'get' do %>
-		          <div class="input-group">
-		            <%= text_field_tag :search, params[:search], :placeholder => "Search text...", class: "form-control" %>
-		            <span class="input-group-btn">
-		              <%= submit_tag "Search", :name => nil, class: "btn btn-default" %>
-		            </span>
-		          </div>
-		        <% end %>
-		      </div>
-		    </div>
+        <hr>
+        <div class="row">
+          <div class="col-md-5">
+            <div id="tag_cloud">
+              <% tag_cloud Alum.tag_counts.sort { |x, y| x.name <=> y.name }, %w{s m l} do |tag, css_class| %>
+                <%= link_to tag.name, tag_path(tag.name), class: "label label-primary"  %>
+              <% end %>
+            </div>
+          </div>
+          <div class="col-md-5">
+            <%= form_tag alums_path, :method => 'get' do %>
+              <div class="input-group">
+                <%= text_field_tag :search, params[:search], :placeholder => "Search alumni...", class: "form-control" %>
+                <span class="input-group-btn">
+                  <%= submit_tag "Search", :name => nil, class: "btn btn-default" %> 
+                </span>
+              </div>
+            <% end %>
+          </div>
+          <div class="col-md-2">
+            <%= link_to 'New Alum', new_alum_path, class: "btn btn-primary pull-right" %>
+          </div>
+        </div>
 		 	<% end %>
     </div>
-    <div class="well well-lg" style="background-color: #222;">
-    	<% Photo.order("RANDOM()").limit(50).each do |photo| %>
-      	<%= link_to image_tag(photo.photograph.url(:thumb)), photo_path(photo) %>
-      <% end %>
-		</div>  
-
   </div>
 </div>  

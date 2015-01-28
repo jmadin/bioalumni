@@ -1,0 +1,34 @@
+<li class="list-group-item">              
+  <div class="row">
+    <div class="col-md-2">
+      <%#= degree.degree_type.degree_type_name %>
+      <% if @alum %>
+        <%= link_to degree.degree_type.degree_type_name, degree_type_path(degree.degree_type) %>
+      <% end %>
+      <% if @degree_type %>
+        <%= link_to "#{degree.alum.first_name} #{degree.alum.last_name}", alum_path(degree.alum) %>
+      <% end %>
+    </div>
+    <div class="col-md-3">
+      <%= degree.graduation_year %>
+    </div>
+    <div class="col-md-3">
+      <%= degree.thesis_title %>
+    </div>
+    <div class="col-md-2">
+      <%= degree.user.name %>
+    </div>
+    <div class="col-md-2">
+      <div class="btn-group pull-right">
+        <% if @alum %>
+          <%= link_to 'Show', degree_type_path(degree.degree_type), class: "btn btn-xs btn-default" %>
+        <% end %>
+        <% if @degree_type %>
+          <%= link_to 'Show', alum_path(degree.alum), class: "btn btn-xs btn-default" %>
+        <% end %>
+        <%= link_to 'Edit', edit_degree_path(degree), class: "btn btn-xs btn-default" %>
+        <%= link_to 'Delete', degree, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-danger" %>
+      </div>
+    </div>
+  </div>
+</li>

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  alum_id: 
+  degree_name: MyString
+  graduation_year: 2014-12-22
+  thesis_title: MyString
+  degree_notes: MyText
+
+two:
+  user_id: 
+  alum_id: 
+  degree_name: MyString
+  graduation_year: 2014-12-22
+  thesis_title: MyString
+  degree_notes: MyText

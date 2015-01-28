@@ -11,13 +11,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @photos = @user.photos.where('photos.photo_filename LIKE ? OR photos.photo_date LIKE ? OR photos.genus_species LIKE ? OR photos.photo_notes LIKE ?', "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%")
 
-    if params[:tags_user]
-      @photos = @photos.tagged_with(params[:tags_user])
-    end
-
-    @photos = @photos.order(sort_column + " " + sort_direction).paginate(page: params[:page], per_page: 10).search(params[:search])
+    @alums = Alum.where(:id => Degree.where(:user => @user).map(&:alum_id)).paginate(page: params[:page], per_page: 25)
 
   end
 

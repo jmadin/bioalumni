@@ -1,0 +1,30 @@
+<li class="list-group-item">              
+  <div class="row">
+    <div class="col-md-2">
+      <%# if @career %>
+        <%#= link_to "#{record.alum.first_name} #{record.alum.last_name}", alum_path(record.alum) %>
+      <%# end %>
+      <%# if @alum %>
+        <%#= link_to record.career.career_name, career_path(record.career) %>
+      <%# end %>
+      <%= link_to image_tag(photo.photograph.url(:thumb)), image_path(photo.photograph.url(:original)), :target => "_blank" %>
+    </div>
+    <div class="col-md-3">
+      <%= photo.photo_date %>
+    </div>
+    <div class="col-md-3">
+      <%= photo.photo_notes %>
+    </div>
+    <div class="col-md-2">
+      <%= photo.photo_filename %>
+    </div>
+    <div class="col-md-2">
+      <div class="btn-group pull-right">
+        <%= link_to 'Show', photo, class: "btn btn-xs btn-default" %>
+        <%= link_to 'Edit', edit_photo_path(photo), class: "btn btn-xs btn-default" %>
+        <%= link_to 'Delete', photo, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-danger" %>
+      </div>
+
+    </div>
+  </div>
+</li>

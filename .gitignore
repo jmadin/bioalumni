@@ -17,6 +17,7 @@ database.yml
 doc/
 *.swp
 *~
+notes_josh.md
 .project
 .DS_Store
 .idea

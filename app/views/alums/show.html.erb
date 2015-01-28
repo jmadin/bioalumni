@@ -1,0 +1,130 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= @alum.first_name %> <%= @alum.middle_name %> <%= @alum.last_name %></h1>
+
+<hr>
+
+<p>
+  <strong>Sex:</strong>
+  <%= @alum.sex %>
+</p>
+
+<p>
+  <strong>Date of birth:</strong>
+  <%= @alum.dob %>
+</p>
+
+<p>
+  <strong>Mq:</strong>
+  <%= @alum.mq_id %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @alum.alum_notes %>
+</p>
+
+<p>
+  <strong>Tags:</strong>
+  <%= raw @alum.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
+</p>
+
+<div class="btn-group">
+  <%= link_to 'Edit', edit_alum_path(@alum), class: "btn btn-sm btn-default" %>
+  <%= link_to 'Back', alums_path, class: "btn btn-sm btn-default" %>
+</div>
+
+<hr>
+<h3>Degrees</h3>
+
+<ul class="list-group">
+  <%= render @alum.degrees.sort_by{|e| e[:graduation_year]} %>
+</ul>
+
+<%= form_for([@alum, @alum.degrees.build]) do |f| %>
+  <div class="row">
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+    <div class="col-md-2">
+      <%= f.select :degree_type_id, DegreeType.all.map { |u| [u.degree_type_name, u.id] }, {}, class: "form-control" %>
+    </div>
+    <div class="col-md-3">
+      <%= f.date_select :graduation_year, class: "form-control" %>
+    </div>
+    <div class="col-md-3">
+      <%= f.text_field :thesis_title, :placeholder => "Thesis title", class: "form-control" %>
+    </div>
+    <div class="col-md-2">
+      <%= f.select :user_id, User.all.map { |u| [u.name, u.id] }, {}, class: "form-control" %>
+    </div>
+    <div class="col-md-2">
+      <%= f.submit class: "btn btn-primary" %>
+    </div>
+  </div>  
+<% end %>
+
+<hr>
+
+<h3>Records</h3>
+
+<ul class="list-group">
+  <%= render @alum.records.sort_by{|e| e[:created_at]} %>
+</ul>
+
+<%= form_for([@alum, @alum.records.build]) do |f| %>
+  <div class="row">
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+    <div class="col-md-2">
+      <%#= f.text_field :career_id, class: "form-control" %>
+      <%= f.select :career_id, Career.all.map { |u| [u.career_name, u.id] }, {}, class: "form-control" %>
+    </div>
+    <div class="col-md-3">
+      <%= f.text_field :work_link, :placeholder => "Work link", class: "form-control" %>
+    </div>
+    <div class="col-md-3">
+      <%= f.text_field :email, :placeholder => "Email", class: "form-control" %>
+    </div>
+    <div class="col-md-2">
+      <%= f.text_field :phone, :placeholder => "Phone", class: "form-control" %>
+    </div>
+
+    <div class="col-md-2">
+      <%= f.submit class: "btn btn-primary" %>
+    </div>
+  </div>  
+
+<% end %>
+
+<hr>
+
+<h3>Photos</h3>
+
+<ul class="list-group">
+  <%= render @alum.photos.sort_by{|e| e[:created_at]} %>
+</ul>
+
+<%= form_for([@alum, @alum.photos.build]) do |f| %>
+  <div class="row">
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+    <%= f.hidden_field :alum_id, :value => @alum.id %>
+    <div class="col-md-2">
+    </div>
+    <div class="col-md-3">
+    <%= f.date_select :photo_date, {:start_year => 1960}, class: "inline-block" %>
+    </div>
+    <div class="col-md-3">
+      <%= f.file_field :photograph, class: "form-control" %>
+    </div>
+    <div class="col-md-2">
+      <%= f.text_field :photo_filename, :placeholder => "Title", class: "form-control" %>
+    </div>
+
+    <div class="col-md-2">
+      <%= f.submit class: "btn btn-primary" %>
+    </div>
+  </div>  
+
+<% end %>
+
+
+
+

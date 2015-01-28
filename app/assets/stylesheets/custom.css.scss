@@ -1,4 +1,9 @@
+@import "bootstrap-sprockets";
 @import "bootstrap";
+
+.row {
+  line-height: 1.5;
+}
 
 /* links */
 a {

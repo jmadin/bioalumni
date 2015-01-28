@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  career_name: MyString
+  career_type: MyString
+  career_system: MyString
+  career_notes: MyText
+
+two:
+  user_id: 
+  career_name: MyString
+  career_type: MyString
+  career_system: MyString
+  career_notes: MyText

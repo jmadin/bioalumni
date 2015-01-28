@@ -1,0 +1,34 @@
+<li class="list-group-item">              
+  <div class="row">
+    <div class="col-md-2">
+      <% if @career %>
+        <%= link_to "#{record.alum.first_name} #{record.alum.last_name}", alum_path(record.alum) %>
+      <% end %>
+      <% if @alum %>
+        <%= link_to record.career.career_name, career_path(record.career) %>
+      <% end %>
+    </div>
+    <div class="col-md-3">
+      <%= link_to record.work_link, record.work_link %>
+    </div>
+    <div class="col-md-3">
+      <%= mail_to record.email %>
+    </div>
+    <div class="col-md-2">
+      <%= record.phone %>
+    </div>
+    <div class="col-md-2">
+      <div class="btn-group pull-right">
+        <% if @alum %>
+          <%= link_to 'Show', career_path(record.career), class: "btn btn-xs btn-default" %>
+        <% end %>
+        <% if @career %>
+          <%= link_to 'Show', alum_path(record.alum), class: "btn btn-xs btn-default" %>
+        <% end %>
+        <%= link_to 'Edit', edit_record_path(record), class: "btn btn-xs btn-default" %>
+        <%= link_to 'Delete', record, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-danger" %>
+      </div>
+
+    </div>
+  </div>
+</li>

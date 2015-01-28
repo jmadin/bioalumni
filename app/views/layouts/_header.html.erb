@@ -1,5 +1,5 @@
 <header>
-  <nav class="navbar navbar-inverse" role="navigation">
+  <nav class="navbar navbar-default">
     <div class="container-fluid">
 
       <div class="navbar-header">
@@ -18,11 +18,23 @@
           <li><%= link_to "Home", root_path %></li>
         </ul>
 
+        <ul class="nav navbar-nav navbar-left">
+            <li><%= link_to "Alumni", alums_path %></li>
+        </ul>
+
         <% if signed_in? %>
 
           <ul class="nav navbar-nav navbar-left">
-            <li><%= link_to "Photos", photos_path %></li>
-            <li><%= link_to "Photographers", users_path %></li>
+            <li id="fat-menu" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Data<b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "Careers", careers_path %></li>
+                <li><%= link_to "Degree types", degree_types_path %></li>
+
+              </ul>
+            </li>
           </ul>
 
 
@@ -36,7 +48,7 @@
                 <%= current_user.name %><b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
-                <li><%= link_to "My photos", current_user, data: { no_turbolink: true } %></li>
+                <li><%= link_to "My alumni", current_user, data: { no_turbolink: true } %></li>
                 <li><%= link_to "Settings", edit_user_path(current_user) %></li>
 
                 <% if current_user.admin? %>

@@ -1,0 +1,28 @@
+<%= form_for(@career) do |f| %>
+
+  <%= render 'shared/error_messages', object: @career %>
+
+  <div class="form-group">
+    <%= f.label "Enterer:" %> <%= current_user.name %>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+  </div>
+  <div class="form-group">
+    <%= f.label :career_name %>
+    <%= f.text_field :career_name, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :career_type %>
+    <%= f.select :career_type, ['', 'Research', 'Teaching', 'Technical', 'Management', 'Policy'], {:selected => @career.career_type}, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :career_system %>
+    <%= f.select :career_system, ['', 'Terrestrial', 'Freshwater', 'Marine', 'Cross-system'], {:selected => @career.career_system}, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :career_notes %>
+    <%= f.text_area :career_notes, class: "form-control" %>
+  </div>
+
+  <%= f.submit class: "btn btn-default" %>
+
+<% end %>

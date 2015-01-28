@@ -1,14 +1,32 @@
-Oldfield::Application.routes.draw do
+Biolumni::Application.routes.draw do
 
+  resources :degree_types
+
+  resources :records
+
+  resources :careers do
+    resources :records
+  end
+
+  resources :degrees
+
+  # resources :alums
+
+  resources :alums do
+    resources :degrees
+    resources :records
+    resources :photos
+  end
 
   resources :photos
 
-  resources :users 
+  resources :users do
+    resources :degrees
+  end
   
   resources :sessions,      only: [:new, :create, :destroy]
 
-  get 'tags/:tag', to: 'photos#index', as: :tag
-  get 'tags_user/:tags_user', to: 'users#show', as: :tags_user
+  get 'tags/:tag', to: 'alums#index', as: :tag
 
   # root to: 'photos#index'
   

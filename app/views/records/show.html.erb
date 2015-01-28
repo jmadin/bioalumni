@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @record.user %>
+</p>
+
+<p>
+  <strong>Alum:</strong>
+  <%= @record.alum %>
+</p>
+
+<p>
+  <strong>Career:</strong>
+  <%= @record.career %>
+</p>
+
+<p>
+  <strong>Work link:</strong>
+  <%= @record.work_link %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @record.email %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @record.phone %>
+</p>
+
+<p>
+  <strong>Record notes:</strong>
+  <%= @record.record_notes %>
+</p>
+
+<%= link_to 'Edit', edit_record_path(@record) %> |
+<%= link_to 'Back', records_path %>

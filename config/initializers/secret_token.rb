@@ -19,4 +19,4 @@ def secure_token
   end
 end
 
-Oldfield::Application.config.secret_key_base = secure_token
+Biolumni::Application.config.secret_key_base = secure_token

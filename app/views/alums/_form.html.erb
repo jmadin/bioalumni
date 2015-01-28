@@ -1,0 +1,44 @@
+<%= form_for(@alum) do |f| %>
+
+  <%= render 'shared/error_messages', object: @alum %>
+
+  <div class="form-group">
+    <%= f.label "Enterer:" %> <%= current_user.name %>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+  </div>
+  <div class="form-group">
+    <%= f.label :first_name %><br>
+    <%= f.text_field :first_name, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :middle_name %><br>
+    <%= f.text_field :middle_name, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :last_name %><br>
+    <%= f.text_field :last_name, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :sex %><br>
+    <%= f.select :sex, ['', 'Female', 'Male'], {:selected => @alum.sex}, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :dob %><br>
+    <%= f.date_select :dob, {:end_year => Date.today.year - 20, :start_year => 1940, :include_blank => true, :default => nil} %>
+  </div>
+  <div class="form-group">
+    <%= f.label "Macquarie ID" %><br>
+    <%= f.text_field :mq_id, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :alum_notes %><br>
+    <%= f.text_area :alum_notes, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :tag_list, "Tags (all lowercase, separated by commas)" %><br>
+    <%= f.text_field :tag_list, class: "form-control" %>
+  </div>
+
+  <%= f.submit class: "btn btn-default" %>
+
+<% end %>

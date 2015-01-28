@@ -6,25 +6,18 @@
   <% end %>
 
   <div class="form-group">
+    <%= f.label :alumni %><br>
+      <%= f.select :alum_id, Alum.all.map { |u| [u.last_name, u.id] }, {}, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
     <%= f.label :title %><br>
     <%= f.text_field :photo_filename, class: "form-control" %>
   </div>
 
   <div class="form-group">
-    <%= f.label :photographer %><br>
-    <% if f.object.id.present? %>
-    <%= collection_select :photo, :user_id, User.all, :id, :name, { :selected => @photo.user_id }, class: "form-control" %>
-    <% else %>
-    <%= collection_select :photo, :user_id, User.all, :id, :name, { :selected => current_user.id }, class: "form-control" %>
-    <% end %>
-  </div>
-  <div class="form-group">
-    <%= f.label :year_taken %><br>
-    <%= f.date_select :photo_date, {:start_year => 1960, :end_year => Time.now.year, :discard_day => true, :discard_month => true}, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :genus_species %><br>
-    <%= f.text_field :genus_species, class: "form-control" %>
+    <%= f.label :date_taken %><br>
+    <%= f.date_select :photo_date, {:start_year => 1960, :end_year => Time.now.year}, class: "inline-block" %>
   </div>
   <div class="form-group">
     <%= f.label :photo_notes %><br>

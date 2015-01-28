@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<div class="page-header">
+  <h1><%= @degree_type.degree_type_name %></h1>
+</div>
+
+<p>
+  <strong>Degree type notes:</strong>
+  <%= @degree_type.degree_type_notes %>
+</p>
+
+<div class="btn-group">
+  <%= link_to 'Edit', edit_degree_type_path(@degree_type), class: "btn btn-sm btn-default" %>
+  <%= link_to 'Back', degree_types_path, class: "btn btn-sm btn-default" %>
+</div>
+
+<hr>
+
+
+<% if @degree_type.degrees.present? %>
+  <%= render @degree_type.degrees.sort_by{|e| e[:created_at]} %>
+<% else %>
+  <div class="alert alert-danger" role="alert">No alumni with this degree type.</div>
+<% end %>
