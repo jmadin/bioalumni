@@ -40,6 +40,13 @@ ActiveRecord::Schema.define(version: 20150129025046) do
 
   add_index "careers", ["user_id"], name: "index_careers_on_user_id"
 
+  create_table "categories", force: true do |t|
+    t.string   "category_name"
+    t.text     "category_description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "degree_types", force: true do |t|
     t.string   "degree_type_name"
     t.text     "degree_type_notes"
@@ -73,10 +80,12 @@ ActiveRecord::Schema.define(version: 20150129025046) do
     t.string   "photograph_content_type"
     t.integer  "photograph_file_size"
     t.datetime "photograph_updated_at"
+    t.integer  "category_id"
     t.integer  "alum_id"
   end
 
   add_index "photos", ["alum_id"], name: "index_photos_on_alum_id"
+  add_index "photos", ["category_id"], name: "index_photos_on_category_id"
   add_index "photos", ["user_id"], name: "index_photos_on_user_id"
 
   create_table "records", force: true do |t|
