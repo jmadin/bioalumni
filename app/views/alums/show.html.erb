@@ -35,17 +35,23 @@
     <div class="well">
       <p>
         <strong>LinkedIn:</strong>
-        <%= link_to @alum.linked_in, @alum.linked_in, target: "_blank" %>
+        <% if @alum.linked_in.present? %>
+          <%= link_to @alum.linked_in, @alum.linked_in, target: "_blank" %>
+        <% end %>
       </p>
 
       <p>
         <strong>Twitter:</strong>
-        <%= link_to @alum.twitter, "https://twitter.com/" + @alum.twitter, target: "_blank" %>
+        <% if @alum.twitter.present? %>
+          <%= link_to @alum.twitter, "https://twitter.com/" + @alum.twitter, target: "_blank" %>
+        <% end %>
       </p>
 
       <p>
         <strong>Facebook:</strong>
-        <%= link_to @alum.facebook, @alum.facebook, target: "_blank" %>
+        <% if @alum.facebook.present? %>
+          <%= link_to @alum.facebook, @alum.facebook, target: "_blank" %>
+        <% end %>
       </p>
     </div>
   </div>
