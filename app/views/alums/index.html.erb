@@ -26,7 +26,7 @@
       <% end %>
     </div>
     <div class="col-md-2">
-      <%= link_to 'New Alum', new_alum_path, class: "btn btn-primary pull-right" %>
+      <%= link_to 'New Alumni', new_alum_path, class: "btn btn-primary pull-right" %>
     </div>
   </div>
 </div>
@@ -42,10 +42,10 @@
     <li class="list-group-item">              
       <div class="row">
         <div class="col-md-3">
-          <%= alum.first_name %>
+          <%= link_to "#{alum.first_name} #{alum.last_name}", alum %>
         </div>
         <div class="col-md-3">
-          <%= alum.last_name %>
+          
         </div>
         <div class="col-md-2">
           <%= alum.mq_id %>

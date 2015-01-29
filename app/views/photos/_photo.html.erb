@@ -7,7 +7,7 @@
       <%# if @alum %>
         <%#= link_to record.career.career_name, career_path(record.career) %>
       <%# end %>
-      <%= link_to image_tag(photo.photograph.url(:thumb)), image_path(photo.photograph.url(:original)), :target => "_blank" %>
+      <%= link_to image_tag(photo.photograph.url(:thumb)), photo %>
     </div>
     <div class="col-md-3">
       <%= photo.photo_date %>
