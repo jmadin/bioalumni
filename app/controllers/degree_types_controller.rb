@@ -11,7 +11,7 @@ class DegreeTypesController < ApplicationController
     data_table.new_column('string', 'Year')
     data_table.new_column('number', 'PhD')
     data_table.new_column('number', 'BSc')
-    data_table.new_column('number', 'Ms')
+    data_table.new_column('number', 'Masters')
 
     temp = Degree.where(:degree_type_id => 1).map { |e| e.graduation_year.year }
 
@@ -72,11 +72,16 @@ class DegreeTypesController < ApplicationController
   # DELETE /degree_types/1
   # DELETE /degree_types/1.json
   def destroy
-    @degree_type.destroy
-    respond_to do |format|
-      format.html { redirect_to degree_types_url, flash: {danger: "Degree was successfully deleted." } }
-      format.json { head :no_content }
+
+    begin
+      @degree_type.destroy
+      flash[:success] = "Degree type was successfully deleted."
+    rescue ActiveRecord::DeleteRestrictionError => e
+      @degree_type.errors.add(:base, e)
+      flash[:danger] = "Degree type could not be deleted. Delete alumni degrees with this degree type and try again."
     end
+    redirect_to degree_types_url
+
   end
 
   private

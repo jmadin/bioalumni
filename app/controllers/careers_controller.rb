@@ -67,11 +67,16 @@ class CareersController < ApplicationController
   # DELETE /careers/1
   # DELETE /careers/1.json
   def destroy
-    @career.destroy
-    respond_to do |format|
-      format.html { redirect_to careers_url, flash: {danger: "Career was successfully deleted." } }
-      format.json { head :no_content }
+    
+    begin
+      @career.destroy
+      flash[:success] = "Career was successfully deleted."
+    rescue ActiveRecord::DeleteRestrictionError => e
+      @career.errors.add(:base, e)
+      flash[:danger] = "Career could not be delete. Delete alumni records with this career and try again."
     end
+    redirect_to careers_url
+
   end
 
   private

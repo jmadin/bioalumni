@@ -19,7 +19,7 @@ class StaticPagesController < ApplicationController
     data_table.new_column('string', 'Year')
     data_table.new_column('number', 'PhD')
     data_table.new_column('number', 'BSc')
-    data_table.new_column('number', 'Ms')
+    data_table.new_column('number', 'Masters')
 
     temp = Degree.where(:degree_type_id => 1).map { |e| e.graduation_year.year }
 
