@@ -12,13 +12,13 @@
           <%= link_to user.name, user %>
         </div>
         <div class="col-md-3">
-          <%= user.email %>
+          <%= mail_to user.email %>
         </div>
         <div class="col-md-1">
           <span class="badge"><%= user.degrees.size %></span>
         </div>
         <div class="col-md-1">
-          <% if user.admin %>
+          <% if current_user.admin && user.admin %>
             <span class="glyphicon glyphicon-ok-circle" style="color:green;"></span>
           <% end %>
         </div>
