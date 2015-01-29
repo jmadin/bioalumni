@@ -8,14 +8,19 @@
         <%= link_to record.career.career_name, career_path(record.career) %>
       <% end %>
     </div>
-    <div class="col-md-3">
-      <%= link_to record.work_link, record.work_link %>
-    </div>
-    <div class="col-md-3">
-      <%= mail_to record.email %>
+    <div class="col-md-2">
+      <%= record.record_date %>
     </div>
     <div class="col-md-2">
-      <%= record.phone %>
+      <%= record.position_title %>
+    </div>
+    <div class="col-md-2">
+      <% if record.work_link.present? %>
+        <%= link_to "Webpage link", record.work_link, :target => "_blank" %>
+      <% end %>
+    </div>
+    <div class="col-md-2">
+      <%= mail_to record.email %>
     </div>
     <div class="col-md-2">
       <div class="btn-group pull-right">

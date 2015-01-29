@@ -9,14 +9,14 @@
       <%# end %>
       <%= link_to image_tag(photo.photograph.url(:thumb)), photo %>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-2">
       <%= photo.photo_date %>
     </div>
     <div class="col-md-3">
-      <%= photo.photo_notes %>
-    </div>
-    <div class="col-md-2">
       <%= photo.photo_filename %>
+    </div>
+    <div class="col-md-3">
+      <%= photo.photo_notes %>
     </div>
     <div class="col-md-2">
       <div class="btn-group pull-right">

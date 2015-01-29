@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150128043359) do
+ActiveRecord::Schema.define(version: 20150129025046) do
 
   create_table "alums", force: true do |t|
     t.integer  "user_id"
@@ -89,6 +89,8 @@ ActiveRecord::Schema.define(version: 20150128043359) do
     t.text     "record_notes"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "position_title"
+    t.date     "record_date"
   end
 
   add_index "records", ["alum_id"], name: "index_records_on_alum_id"
