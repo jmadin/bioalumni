@@ -7,7 +7,7 @@
 
   <div class="form-group">
     <%= f.label :alumni %><br>
-      <%= f.select :alum_id, Alum.all.map { |u| [u.last_name, u.id] }, {}, class: "form-control" %>
+      <%= f.select :alum_id, Alum.all.map { |u| ["#{u.first_name} #{u.last_name}", u.id] }, {}, class: "form-control" %>
   </div>
 
   <div class="form-group">

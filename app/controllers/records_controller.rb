@@ -35,7 +35,7 @@ class RecordsController < ApplicationController
         format.html { redirect_to alum_path(@alum), flash: {danger: "Record was successfully created." } }
         format.json { render :show, status: :created, location: @record }
       else
-        format.html { redirect_to alum_path(@alum), flash: {danger: "Record was NOT created." } }
+        format.html { redirect_to alum_path(@alum), flash: {danger: "Record was NOT created. Did you select a career?" } }
         format.json { render json: @record.errors, status: :unprocessable_entity }
       end
     end
@@ -46,7 +46,7 @@ class RecordsController < ApplicationController
   def update
     respond_to do |format|
       if @record.update(record_params)
-        format.html { redirect_to alum_path(@record.alum), flash: {danger: "Record was successfully updated." } }
+        format.html { redirect_to alum_path(@record.alum), flash: {success: "Record was successfully updated." } }
         format.json { render :show, status: :ok, location: @record }
       else
         format.html { render :edit }

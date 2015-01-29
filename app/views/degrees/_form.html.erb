@@ -5,9 +5,13 @@
   <%#= f.hidden_field :user_id, :value => current_user.id %>
   <%= f.hidden_field :alum_id, :value => @degree.alum.id %>
 
+  <p>
+    <%= f.label :alumni_name %>: <%= @degree.alum.first_name %> <%= @degree.alum.last_name %>
+  </p>
+
   <div class="form-group">
     <%= f.label :degree_name %><br>
-    <%= f.select :degree_type_id, DegreeType.all.map { |u| [u.degree_type_name, u.id] }, {}, class: "form-control" %>
+    <%= f.select :degree_type_id, DegreeType.all.map { |u| [u.degree_type_name, u.id] }, { include_blank: "Degree..." }, class: "form-control" %>
   </div>
   <div class="form-group">
     <%= f.label :graduation_date %><br>
@@ -19,7 +23,7 @@
   </div>
   <div class="form-group">
     <%= f.label :supervisor %><br>
-    <%= f.select :user_id, User.all.map { |u| [u.name, u.id] }, {}, class: "form-control" %>
+    <%= f.select :user_id, User.all.map { |u| [u.name, u.id] }, { include_blank: "Supervisor..." }, class: "form-control" %>
   </div>
   <div class="form-group">
     <%= f.label :degree_notes %><br>

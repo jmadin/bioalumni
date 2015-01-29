@@ -27,6 +27,7 @@ class DegreeTypesController < ApplicationController
   # GET /degree_types/1
   # GET /degree_types/1.json
   def show
+    @degrees = @degree_type.degrees.paginate(page: params[:page], per_page: 25)
   end
 
   # GET /degree_types/new

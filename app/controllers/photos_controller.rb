@@ -32,13 +32,15 @@ class PhotosController < ApplicationController
   # POST /photos
   # POST /photos.json
   def create
+    @alum = Alum.find(params[:alum_id])
     @photo = Photo.new(photo_params)
 
     if @photo.save
       redirect_to alum_path(@photo.alum)
       flash[:success] = "Photo was successfully created."
     else
-      render :new
+      redirect_to alum_path(@alum)
+      flash[:danger] = "Photo was NOT uploaded. Did you select a file?"
     end
   end
 
