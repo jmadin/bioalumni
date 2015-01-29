@@ -1,56 +1,46 @@
-<div class="row">
-  <div class="col-md-10 col-md-offset-1">
-    
-    <div class="row">
-      <div class="col-md-12">
-        <h1>Photos
-        <%= link_to 'Add Photo', new_photo_path, class: 'btn btn-lg btn-primary pull-right' %></h1>
-      </div>
-    </div>
-
-
-    <table class="table">
-      <thead>
-        <tr>
-          <th></th>
-          <th>Tags</th>
-          <th><%= sortable "photo_filename", "Title" %></th>
-          <th><%= sortable "user_id", "Photographer" %></th>
-          <th><%= sortable "photo_date", "Year" %></th>
-          <th></th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% @photos.each do |photo| %>
-          <tr>
-
-            <td><%= link_to image_tag(photo.photograph.url(:thumb)), image_path(photo.photograph.url(:original)), :target => "_blank" %></td>
-            <td>
-              <% photo.tag_list.each do |t| %>
-                <%= link_to t, tag_path(t), class: "label label-primary" %>
-              <% end %>
-            </td>
-            <td><%= photo.photo_filename %></td>
-            <td><%= link_to photo.user_id, "/users/" + photo.user_id.to_s %></td>
-            <td><%= photo.photo_date.strftime("%Y") %></td>
-            <td style="width:150px;">
-              <div class="btn-group">
-                <%= link_to 'Show', photo, class: "btn btn-sm btn-default" %>
-                <% if (signed_in? && current_user == photo.user) | (signed_in? && current_user.admin?) %>
-                  <%= link_to 'Edit', edit_photo_path(photo), class: "btn btn-sm btn-default" %>
-                <% end %>
-              </div>
-              <% if (signed_in? && current_user == photo.user) | (signed_in? && current_user.admin?) %>
-                <%= link_to 'X', photo, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-default btn-danger" %>
-              <% end %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-
-    <%= will_paginate @photos %>
-
-  </div>
+<div class="page-header">
+  <h1>Photos</h1>
 </div>
+
+<p>
+  <%= link_to 'Add Photo', new_photo_path, class: 'btn btn-primary' %>
+</p>
+
+<hr>
+
+<%= will_paginate @photos %>
+
+<ul class="list-group">
+  <% @photos.each do |photo| %>
+    <li class="list-group-item">              
+      <div class="row">
+        <div class="col-md-2">
+          <%= link_to image_tag(photo.photograph.url(:thumb)), image_path(photo.photograph.url(:original)), :target => "_blank" %>
+        </div>
+        <div class="col-md-2">
+          <% photo.tag_list.each do |t| %>
+            <%= link_to t, tag_path(t), class: "label label-primary" %>
+          <% end %>
+        </div>
+        <div class="col-md-3">
+          <%= photo.photo_filename %>
+        </div>
+        <div class="col-md-2">
+          <%= photo.photo_date %>
+        </div>
+        <div class="col-md-3">
+          <div class="btn-group pull-right">
+            <%= link_to 'Show', photo, class: "btn btn-xs btn-default" %>
+            <% if (signed_in? && current_user == photo.user) | (signed_in? && current_user.admin?) %>
+              <%= link_to 'Edit', edit_photo_path(photo), class: "btn btn-xs btn-default" %>
+              <%= link_to 'Delete', photo, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-default btn-danger" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </li>
+  <% end %>
+</ul>
+
+<%= will_paginate @photos %>
+

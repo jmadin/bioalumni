@@ -43,7 +43,9 @@
           <div class="btn-group pull-right">
             <%= link_to 'Show', alum, class: "btn btn-xs btn-default" %>
             <%= link_to 'Edit', edit_alum_path(alum), class: "btn btn-xs btn-default" %>
-            <%= link_to 'Delete', alum, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-danger" %>
+            <% if signed_in? && current_user.admin? %>
+              <%= link_to 'Delete', alum, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-danger" %>
+            <% end %>
           </div>
         </div>
       </div>
