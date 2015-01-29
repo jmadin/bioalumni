@@ -8,27 +8,22 @@
 			<% if signed_in? %>
         <hr>
         <div class="row">
-          <div class="col-md-5">
+          <div class="col-md-6">
             <div id="tag_cloud">
               <% tag_cloud Alum.tag_counts.sort { |x, y| x.name <=> y.name }, %w{s m l} do |tag, css_class| %>
                 <%= link_to tag.name, tag_path(tag.name), class: "label label-primary"  %>
               <% end %>
             </div>
           </div>
-          <div class="col-md-5">
-            <%= form_tag alums_path, :method => 'get' do %>
-              <div class="input-group">
-                <%= text_field_tag :search, params[:search], :placeholder => "Search alumni...", class: "form-control" %>
-                <span class="input-group-btn">
-                  <%= submit_tag "Search", :name => nil, class: "btn btn-default" %> 
-                </span>
-              </div>
-            <% end %>
-          </div>
-          <div class="col-md-2">
-            <%= link_to 'New Alum', new_alum_path, class: "btn btn-primary pull-right" %>
+          <div class="col-md-6">
+            <%= link_to 'New Alumni', new_alum_path, class: "btn btn-primary pull-right" %>
           </div>
         </div>
+        <% if @chart %><br>
+          <script src='http://www.google.com/jsapi'></script>
+          <div id='chart' class="center-block"></div>
+          <%= render_chart @chart, 'chart' %>              
+        <% end %>
 		 	<% end %>
     </div>
   </div>

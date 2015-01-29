@@ -14,6 +14,7 @@ gem "paperclip", "~> 4.1"
 gem 'cocaine', '~> 0.5.2'
 gem 'jquery-fileupload-rails'
 gem 'acts-as-taggable-on'
+gem 'google_visualr', '~> 2.1.0'
 
 group :development, :test do
 end

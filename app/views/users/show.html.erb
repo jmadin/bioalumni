@@ -9,8 +9,10 @@
 </p>
 
 <% if current_user == @user %>
-<p><%= link_to 'Add Alumni', new_alum_path, class: 'btn btn-primary pull-right' %></p>
+  <%= link_to 'Add Alumni', new_alum_path, class: 'btn btn-primary' %>
 <% end %>
+
+<hr>
 
 <%= render "user_alums" %>
 

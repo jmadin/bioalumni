@@ -15,7 +15,7 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
         <ul class="nav navbar-nav navbar-left">
-          <li><%= link_to "Home", root_path %></li>
+          <li><%= link_to "Home", root_path, 'data-no-turbolink' => true %></li>
         </ul>
 
         <ul class="nav navbar-nav navbar-left">
@@ -37,6 +37,15 @@
             </li>
           </ul>
 
+          <ul class="nav navbar-nav navbar-left">
+            <li>
+              <%= form_tag alums_path, class: "navbar-form navbar-left", :method => :get do %>
+                <div class="form-group">
+                  <%= text_field_tag :search, params[:search], { class: "form-control search", placeholder: "Search alumni..." }   %>
+                </div>
+              <% end %>
+            </li>
+          </ul>
 
         <% end %>
 

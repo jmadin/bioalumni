@@ -4,6 +4,11 @@ class Alum < ActiveRecord::Base
   has_many :records
   has_many :photos
 
+  # validates :first_name, :presence => true
+  # validates :last_name, :presence => true
+  # validates_uniqueness_of :first_name, :scope => :last_name, :case_sensitive => false
+  validates :last_name, :presence => true, :uniqueness => {:scope => [:first_name, :middle_name], :message => "and first name combination already exists. If this is indeed correct, please add a middle name to distinguish between the two people."} 
+
   acts_as_taggable
 
   def self.search(search)

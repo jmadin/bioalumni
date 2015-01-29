@@ -61,7 +61,7 @@ class PhotosController < ApplicationController
     if params[:user]
       redirect_to user_path(params[:user])
     else
-      redirect_to photos_url
+      redirect_to alum_path(@photo.alum)
     end
     flash[:success] = "Photo was successfully deleted."
   end
