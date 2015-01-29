@@ -5,13 +5,13 @@ class CareersController < ApplicationController
   # GET /careers
   # GET /careers.json
   def index
-    @careers = Career.all
+    @careers = Career.all.sort_by { |x| x.records.size }.reverse
 
     data_table = GoogleVisualr::DataTable.new
     data_table.new_column('string')
     data_table.new_column('number')
 
-    @careers.all.each do |i|
+    @careers.each do |i|
       data_table.add_row([i.career_name, Record.where("career_id = ?", i.id).size])
     end
 
