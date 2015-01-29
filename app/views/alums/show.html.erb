@@ -38,7 +38,7 @@
 <h3>Degrees</h3>
 
 <ul class="list-group">
-  <%= render @alum.degrees.sort_by{|e| e[:graduation_year]} %>
+  <%= render @alum.degrees %>
 </ul>
 
 <%= form_for([@alum, @alum.degrees.build]) do |f| %>
@@ -67,7 +67,7 @@
 <h3>Records</h3>
 
 <ul class="list-group">
-  <%= render @alum.records.sort_by{|e| e[:created_at]} %>
+  <%= render @alum.records %>
 </ul>
 
 <%= form_for([@alum, @alum.records.build]) do |f| %>
