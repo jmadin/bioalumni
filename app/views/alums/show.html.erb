@@ -47,17 +47,17 @@
     <div class="col-md-2">
       <%= f.select :degree_type_id, DegreeType.all.map { |u| [u.degree_type_name, u.id] }, {}, class: "form-control" %>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-2">
       <%= f.date_select :graduation_year, class: "form-control" %>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-4">
       <%= f.text_field :thesis_title, :placeholder => "Thesis title", class: "form-control" %>
     </div>
     <div class="col-md-2">
       <%= f.select :user_id, User.all.map { |u| [u.name, u.id] }, {}, class: "form-control" %>
     </div>
     <div class="col-md-2">
-      <%= f.submit class: "btn btn-primary" %>
+      <%= f.submit class: "btn btn-primary pull-right" %>
     </div>
   </div>  
 <% end %>
@@ -77,18 +77,21 @@
       <%#= f.text_field :career_id, class: "form-control" %>
       <%= f.select :career_id, Career.all.map { |u| [u.career_name, u.id] }, {}, class: "form-control" %>
     </div>
-    <div class="col-md-3">
-      <%= f.text_field :work_link, :placeholder => "Work link", class: "form-control" %>
-    </div>
-    <div class="col-md-3">
-      <%= f.text_field :email, :placeholder => "Email", class: "form-control" %>
+    <div class="col-md-2">
+      <%= f.date_select :record_date, class: "form-control" %>
     </div>
     <div class="col-md-2">
-      <%= f.text_field :phone, :placeholder => "Phone", class: "form-control" %>
+      <%= f.text_field :position_title, :placeholder => "Position title", class: "form-control" %>
+    </div>
+    <div class="col-md-2">
+      <%= f.text_field :work_link, :placeholder => "Work link", class: "form-control" %>
+    </div>
+    <div class="col-md-2">
+      <%= f.text_field :email, :placeholder => "Email", class: "form-control" %>
     </div>
 
     <div class="col-md-2">
-      <%= f.submit class: "btn btn-primary" %>
+      <%= f.submit class: "btn btn-primary pull-right" %>
     </div>
   </div>  
 
@@ -108,18 +111,18 @@
     <%= f.hidden_field :alum_id, :value => @alum.id %>
     <div class="col-md-2">
     </div>
-    <div class="col-md-3">
+    <div class="col-md-2">
     <%= f.date_select :photo_date, {:start_year => 1960}, class: "inline-block" %>
+    </div>
+    <div class="col-md-3">
+      <%= f.text_field :photo_filename, :placeholder => "Photo title", class: "form-control" %>
     </div>
     <div class="col-md-3">
       <%= f.file_field :photograph, class: "form-control" %>
     </div>
-    <div class="col-md-2">
-      <%= f.text_field :photo_filename, :placeholder => "Title", class: "form-control" %>
-    </div>
 
     <div class="col-md-2">
-      <%= f.submit "Upload Photo", class: "btn btn-primary" %>
+      <%= f.submit "Upload Photo", class: "btn btn-primary pull-right" %>
     </div>
   </div>  
 
