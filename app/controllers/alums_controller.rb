@@ -34,7 +34,7 @@ class AlumsController < ApplicationController
 
     respond_to do |format|
       if @alum.save
-        format.html { redirect_to @alum, flash: {danger: "Alum was successfully created." } }
+        format.html { redirect_to @alum, flash: {success: "Alum was successfully created." } }
         format.json { render :show, status: :created, location: @alum }
       else
         format.html { render :new }
@@ -48,7 +48,7 @@ class AlumsController < ApplicationController
   def update
     respond_to do |format|
       if @alum.update(alum_params)
-        format.html { redirect_to @alum, flash: {danger: "Alum was successfully updated." } }
+        format.html { redirect_to @alum, flash: {success: "Alum was successfully updated." } }
         format.json { render :show, status: :ok, location: @alum }
       else
         format.html { render :edit }
@@ -62,7 +62,7 @@ class AlumsController < ApplicationController
   def destroy
     @alum.destroy
     respond_to do |format|
-      format.html { redirect_to alums_url, flash: {danger: "Alum was successfully deleted." } }
+      format.html { redirect_to alums_url, flash: {success: "Alum was successfully deleted." } }
       format.json { head :no_content }
     end
   end
@@ -75,6 +75,6 @@ class AlumsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def alum_params
-      params.require(:alum).permit(:user_id, :first_name, :middle_name, :last_name, :sex, :dob, :mq_id, :tag_list, :alum_notes)
+      params.require(:alum).permit(:user_id, :first_name, :middle_name, :last_name, :sex, :dob, :mq_id, :tag_list, :alum_notes, :linked_in, :twitter, :facebook)
     end
 end
