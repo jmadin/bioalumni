@@ -11,12 +11,4 @@ class Photo < ActiveRecord::Base
   validates_attachment :photograph, :presence => true,
     :content_type => { :content_type => ["image/jpeg", "image/gif", "image/png", "image/tiff"] }
 
-  # def self.search(search)
-  #     if search
-  #       where('photo_filename LIKE ? OR photo_date LIKE ? OR genus_species LIKE ? OR photo_notes LIKE ?', "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%")
-  #     else
-  #       all
-  #     end
-  # end
-
 end

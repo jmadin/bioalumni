@@ -1,16 +1,16 @@
 
 <div class="page-header">
-  <h1>Degree types</h1>
+  <h1>Degrees</h1>
 </div>
 
-<p><%= link_to 'New Degree type', new_degree_type_path, class: "btn btn-primary" %></p>
+<p><%= link_to 'New Degree', new_degree_type_path, class: "btn btn-primary" %></p>
 
 <ul class="list-group">
   <% @degree_types.each do |degree_type| %>
     <li class="list-group-item">              
       <div class="row">
         <div class="col-sm-3">
-          <%= degree_type.degree_type_name %>
+          <%= link_to degree_type.degree_type_name, degree_type %>
         </div>
         <div class="col-sm-2">
           <span class="badge"><%= degree_type.degrees.size %></span>

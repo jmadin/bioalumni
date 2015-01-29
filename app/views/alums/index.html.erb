@@ -7,7 +7,7 @@
 </p>
 
 <p>Tags: 
-  <%= link_to "x", alums_path, class: "label label-danger"  %>
+  <%= link_to "clear", alums_path, class: "label label-danger"  %>
   <% tag_cloud Alum.tag_counts.sort { |x, y| x.name <=> y.name }, %w{s m l} do |tag, css_class| %>
     <%= link_to tag.name, tag_path(tag.name), class: "label label-primary"  %>
   <% end %>
