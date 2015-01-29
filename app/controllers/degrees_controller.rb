@@ -35,10 +35,10 @@ class DegreesController < ApplicationController
 
     respond_to do |format|
       if @degree.save
-        format.html { redirect_to alum_path(@alum), flash: {danger: "Degree was successfully created." } }
+        format.html { redirect_to alum_path(@alum), flash: {success: "Degree was successfully created." } }
         format.json { render :show, status: :created, location: @degree }
       else
-        format.html { redirect_to alum_path(@alum), flash: {danger: "Degree was NOT created." } }
+        format.html { redirect_to alum_path(@alum), flash: {danger: "Degree was NOT created. Did you select a degree?" } }
         format.json { render json: @degree.errors, status: :unprocessable_entity }
       end
     end

@@ -22,6 +22,7 @@ class CareersController < ApplicationController
   # GET /careers/1
   # GET /careers/1.json
   def show
+    @records = @career.records.paginate(page: params[:page], per_page: 25)
   end
 
   # GET /careers/new
