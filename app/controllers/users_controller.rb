@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   helper_method :sort_column, :sort_direction
 
   def index
-    @users = User.all.sort_by { |x| x.photos.size }.reverse
+    @users = User.all
   end
 
   def show
@@ -25,7 +25,7 @@ class UsersController < ApplicationController
     if @user.code == "e8b"
       if @user.save
         sign_in @user
-        flash[:success] = "Welcome to Oldfield"
+        flash[:success] = "Welcome to Biolumni"
         redirect_to @user
       else
         render 'new'
