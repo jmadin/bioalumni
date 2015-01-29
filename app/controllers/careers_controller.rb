@@ -6,6 +6,17 @@ class CareersController < ApplicationController
   # GET /careers.json
   def index
     @careers = Career.all
+
+    data_table = GoogleVisualr::DataTable.new
+    data_table.new_column('string')
+    data_table.new_column('number')
+
+    @careers.all.each do |i|
+      data_table.add_row([i.career_name, Record.where("career_id = ?", i.id).size])
+    end
+
+    option = { width: 400, height: 300, :title => 'Graduate careers' }
+    @chart_careers = GoogleVisualr::Interactive::PieChart.new(data_table, option)
   end
 
   # GET /careers/1

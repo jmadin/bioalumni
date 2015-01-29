@@ -2,7 +2,16 @@
   <h1>Careers</h1>
 </div>
 
-<p><%= link_to 'New Career', new_career_path, class: "btn btn-primary" %></p>
+<div class="row">
+  <div class="col-md-6">
+    <p><%= link_to 'New Career', new_career_path, class: "btn btn-primary" %></p>
+  </div>
+  <div class="col-md-6">
+    <script src='http://www.google.com/jsapi'></script>
+    <div id='chart1'></div>
+    <%= render_chart @chart_careers, 'chart1' %>              
+  </div>
+</div>
 
 <ul class="list-group">
   <% @careers.each do |career| %>

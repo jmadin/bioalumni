@@ -3,7 +3,16 @@
   <h1>Degrees</h1>
 </div>
 
-<p><%= link_to 'New Degree', new_degree_type_path, class: "btn btn-primary" %></p>
+<div class="row">
+  <div class="col-md-6">
+    <p><%= link_to 'New Degree', new_degree_type_path, class: "btn btn-primary" %></p>
+  </div>
+  <div class="col-md-6">
+    <script src='http://www.google.com/jsapi'></script>
+    <div id='chart2'></div>
+    <%= render_chart @chart_phds, 'chart2' %>              
+  </div>
+</div>
 
 <ul class="list-group">
   <% @degree_types.each do |degree_type| %>
