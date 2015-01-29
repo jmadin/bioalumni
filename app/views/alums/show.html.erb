@@ -1,33 +1,55 @@
 <p id="notice"><%= notice %></p>
 
-<h1><%= @alum.first_name %> <%= @alum.middle_name %> <%= @alum.last_name %></h1>
+<div class="page-header">
+  <h1><%= @alum.first_name %> <%= @alum.middle_name %> <%= @alum.last_name %></h1>
+</div>
 
-<hr>
+<div class="row">
+  <div class="col-md-8">
+    <p>
+      <strong>Sex:</strong>
+      <%= @alum.sex %>
+    </p>
 
-<p>
-  <strong>Sex:</strong>
-  <%= @alum.sex %>
-</p>
+    <p>
+      <strong>Date of birth:</strong>
+      <%= @alum.dob %>
+    </p>
 
-<p>
-  <strong>Date of birth:</strong>
-  <%= @alum.dob %>
-</p>
+    <p>
+      <strong>Mq:</strong>
+      <%= @alum.mq_id %>
+    </p>
 
-<p>
-  <strong>Mq:</strong>
-  <%= @alum.mq_id %>
-</p>
+    <p>
+      <strong>Notes:</strong>
+      <%= @alum.alum_notes %>
+    </p>
 
-<p>
-  <strong>Notes:</strong>
-  <%= @alum.alum_notes %>
-</p>
+    <p>
+      <strong>Tags:</strong>
+      <%= raw @alum.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
+    </p>
+  </div>
+  <div class="col-md-4">
+    <div class="well">
+      <p>
+        <strong>LinkedIn:</strong>
+        <%= link_to @alum.linked_in, @alum.linked_in, target: "_blank" %>
+      </p>
 
-<p>
-  <strong>Tags:</strong>
-  <%= raw @alum.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
-</p>
+      <p>
+        <strong>Twitter:</strong>
+        <%= link_to @alum.twitter, "https://twitter.com/" + @alum.twitter, target: "_blank" %>
+      </p>
+
+      <p>
+        <strong>Facebook:</strong>
+        <%= link_to @alum.facebook, @alum.facebook, target: "_blank" %>
+      </p>
+    </div>
+  </div>
+</div>
 
 <div class="btn-group">
   <%= link_to 'Edit', edit_alum_path(@alum), class: "btn btn-sm btn-default" %>
