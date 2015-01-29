@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   helper_method :sort_column, :sort_direction
 
   def index
-    @users = User.all
+    @users = User.all.sort_by { |x| x.degrees.size }.reverse
   end
 
   def show
