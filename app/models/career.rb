@@ -1,6 +1,6 @@
 class Career < ActiveRecord::Base
   belongs_to :user
-  has_many :records
+  has_many :records, :dependent => :restrict
 
   validates :career_name, :presence => true
 
