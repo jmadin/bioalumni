@@ -16,17 +16,21 @@
       <%= degree.thesis_title %>
     </div>
     <div class="col-md-2">
-      <% if degree.user %>
-        <%= link_to degree.user.name, degree.user %>
+      <% if not degree.users.empty? %>
+        <% degree.users.each do |user| %>
+        <%= link_to user.name, user %><br>
+        <% end %>
       <% end %>
     </div>
+
+
     <div class="col-md-2">
       <div class="btn-group pull-right">
         <% if @alum %>
-          <%= link_to 'Show', degree_type_path(degree.degree_type), class: "btn btn-xs btn-default" %>
+          <%= link_to 'Show', degree_path(degree), class: "btn btn-xs btn-default" %>
         <% end %>
         <% if @degree_type %>
-          <%= link_to 'Show', alum_path(degree.alum), class: "btn btn-xs btn-default" %>
+          <%= link_to 'Show', degree_path(degree), class: "btn btn-xs btn-default" %>
         <% end %>
         <%= link_to 'Edit', edit_degree_path(degree), class: "btn btn-xs btn-default" %>
         <%= link_to 'Delete', degree, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-danger" %>

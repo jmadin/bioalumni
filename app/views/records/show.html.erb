@@ -1,39 +1,64 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>User:</strong>
-  <%= @record.user %>
-</p>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
 
-<p>
-  <strong>Alum:</strong>
-  <%= @record.alum %>
-</p>
+    <div class="page-header">
+      <h1>Career record: <%= @record.alum.first_name %> <%= @record.alum.last_name %></h1>
+    </div>
 
-<p>
-  <strong>Career:</strong>
-  <%= @record.career %>
-</p>
+    <p>
+      <strong>Enterer:</strong>
+      <%= mail_to @record.user.email, @record.user.name %>
+    </p>
 
-<p>
-  <strong>Work link:</strong>
-  <%= @record.work_link %>
-</p>
 
-<p>
-  <strong>Email:</strong>
-  <%= @record.email %>
-</p>
+    <p>
+      <strong>Career:</strong>
+      <%= link_to @record.career.career_name, @record.career %>
+    </p>
 
-<p>
-  <strong>Phone:</strong>
-  <%= @record.phone %>
-</p>
+    <p>
+      <strong>Company name:</strong>
+      <%= @record.company_name %>
+    </p>
 
-<p>
-  <strong>Record notes:</strong>
-  <%= @record.record_notes %>
-</p>
+    <p>
+      <strong>From date:</strong>
+      <%= @record.record_date %>
+    </p>
 
-<%= link_to 'Edit', edit_record_path(@record) %> |
-<%= link_to 'Back', records_path %>
+    <p>
+      <strong>Until date:</strong>
+      <%= @record.until_date %>
+    </p>
+
+    <p>
+      <strong>Work link:</strong>
+      <% if @record.work_link.present? %>
+        <%= link_to @record.work_link, @record.work_link, :target => "_blank" %>
+      <% end %>
+    </p>
+
+    <p>
+      <strong>Email:</strong>
+      <%= mail_to @record.email, @record.email %>
+    </p>
+
+    <p>
+      <strong>Phone:</strong>
+      <%= @record.phone %>
+    </p>
+
+    <p>
+      <strong>Record notes:</strong>
+      <%= @record.record_notes %>
+    </p>
+
+    <div class="btn-group">
+      <%= link_to 'Edit', edit_record_path(@record), class: "btn btn-sm btn-default" %>
+      <%= link_to 'Back', alum_path(@record.alum), class: "btn btn-sm btn-default" %>
+    </div>
+
+  </div>
+</div>

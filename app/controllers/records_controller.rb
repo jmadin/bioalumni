@@ -25,19 +25,15 @@ class RecordsController < ApplicationController
   # POST /records
   # POST /records.json
   def create
-    # @record = Record.new(record_params)
+    @record = Record.new(record_params)
 
-    @alum = Alum.find(params[:alum_id])
-    @record = @alum.records.create(record_params)
+    # @alum = Alum.find(params[:alum_id])
+    # @record = @alum.records.create(record_params)
 
-    respond_to do |format|
-      if @record.save
-        format.html { redirect_to alum_path(@alum), flash: {danger: "Record was successfully created." } }
-        format.json { render :show, status: :created, location: @record }
-      else
-        format.html { redirect_to alum_path(@alum), flash: {danger: "Record was NOT created. Did you select a career?" } }
-        format.json { render json: @record.errors, status: :unprocessable_entity }
-      end
+    if @record.save
+      redirect_to alum_path(@record.alum), flash: {success: "Record was successfully created." }
+    else
+      render :new
     end
   end
 
@@ -73,6 +69,6 @@ class RecordsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def record_params
-      params.require(:record).permit(:user_id, :alum_id, :career_id, :work_link, :email, :phone, :record_notes, :position_title, :record_date)
+      params.require(:record).permit(:user_id, :alum_id, :career_id, :work_link, :email, :phone, :record_notes, :position_title, :record_date, :until_date, :company_name)
     end
 end

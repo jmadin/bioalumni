@@ -15,9 +15,7 @@
       <%= record.position_title %>
     </div>
     <div class="col-md-2">
-      <% if record.work_link.present? %>
-        <%= link_to "Webpage link", record.work_link, :target => "_blank" %>
-      <% end %>
+      <%= record.company_name %>
     </div>
     <div class="col-md-2">
       <%= mail_to record.email %>
@@ -25,10 +23,10 @@
     <div class="col-md-2">
       <div class="btn-group pull-right">
         <% if @alum %>
-          <%= link_to 'Show', career_path(record.career), class: "btn btn-xs btn-default" %>
+          <%= link_to 'Show', record_path(record), class: "btn btn-xs btn-default" %>
         <% end %>
         <% if @career %>
-          <%= link_to 'Show', alum_path(record.alum), class: "btn btn-xs btn-default" %>
+          <%= link_to 'Show', record_path(record), class: "btn btn-xs btn-default" %>
         <% end %>
         <%= link_to 'Edit', edit_record_path(record), class: "btn btn-xs btn-default" %>
         <%= link_to 'Delete', record, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-danger" %>

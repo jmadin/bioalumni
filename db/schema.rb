@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150129214030) do
+ActiveRecord::Schema.define(version: 20150204061437) do
 
   create_table "alums", force: true do |t|
     t.integer  "user_id"
@@ -58,7 +58,6 @@ ActiveRecord::Schema.define(version: 20150129214030) do
   end
 
   create_table "degrees", force: true do |t|
-    t.integer  "user_id"
     t.integer  "alum_id"
     t.date     "graduation_year"
     t.string   "thesis_title"
@@ -70,7 +69,11 @@ ActiveRecord::Schema.define(version: 20150129214030) do
 
   add_index "degrees", ["alum_id"], name: "index_degrees_on_alum_id"
   add_index "degrees", ["degree_type_id"], name: "index_degrees_on_degree_type_id"
-  add_index "degrees", ["user_id"], name: "index_degrees_on_user_id"
+
+  create_table "degrees_users", id: false, force: true do |t|
+    t.integer "user_id"
+    t.integer "degree_id"
+  end
 
   create_table "photos", force: true do |t|
     t.string   "photo_filename"
@@ -103,6 +106,8 @@ ActiveRecord::Schema.define(version: 20150129214030) do
     t.datetime "updated_at"
     t.string   "position_title"
     t.date     "record_date"
+    t.string   "company_name"
+    t.date     "until_date"
   end
 
   add_index "records", ["alum_id"], name: "index_records_on_alum_id"
@@ -141,5 +146,10 @@ ActiveRecord::Schema.define(version: 20150129214030) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["remember_token"], name: "index_users_on_remember_token"
+
+  create_table "users_degrees", id: false, force: true do |t|
+    t.integer "user_id"
+    t.integer "degree_id"
+  end
 
 end

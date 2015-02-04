@@ -3,23 +3,38 @@
   <%= render 'shared/error_messages', object: @record %>
 
   <%= f.hidden_field :user_id, :value => current_user.id %>
-  <%= f.hidden_field :alum_id, :value => @record.alum.id %>
+  <%#= f.hidden_field :alum_id, :value => @record.alum.id %>
 
-  <p>
-    <%= f.label :alumni_name %>: <%= @record.alum.first_name %> <%= @record.alum.last_name %>
-  </p>
+  <div class="form-group">
+    <% if @record.alum %>
+      <%= f.hidden_field :alum_id, :value => @record.alum.id %>
+      <%= f.label :alumni_name %><br>
+      <%= @record.alum.first_name %> <%= @record.alum.last_name %>
+    <% else %>
+      <%= f.label :alumni_name %><br>
+      <%= f.select :alum_id, Alum.all.map { |u| ["#{u.first_name} #{u.last_name}", u.id] }, { selected: params[:alum_id] }, class: "form-control" %>
+    <% end %>
+  </div>
 
   <div class="form-group">
     <%= f.label :career_id %><br>
     <%= f.select :career_id, Career.all.map { |u| [u.career_name, u.id] }, { include_blank: "Career..." }, class: "form-control" %>
   </div>
   <div class="form-group">
-    <%= f.label :record_date %><br>
+    <%= f.label :from_date %><br>
     <%= f.date_select :record_date, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :until_date %><br>
+    <%= f.date_select :until_date, class: "form-control" %>
   </div>
   <div class="form-group">
     <%= f.label :position_title %><br>
     <%= f.text_field :position_title, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :company_name %><br>
+    <%= f.text_field :company_name, class: "form-control" %>
   </div>
   <div class="form-group">
     <%= f.label :work_link %><br>

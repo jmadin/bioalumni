@@ -9,6 +9,9 @@ Biolumni::Application.routes.draw do
   end
 
   resources :degrees
+  # resources :degrees do
+  #   resources :users
+  # end
 
   # resources :alums
 
@@ -20,9 +23,10 @@ Biolumni::Application.routes.draw do
 
   resources :photos
 
-  resources :users do
-    resources :degrees
-  end
+  resources :users
+  # resources :users do
+  #   resources :degrees
+  # end
   
   resources :sessions,      only: [:new, :create, :destroy]
 

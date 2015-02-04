@@ -3,10 +3,15 @@
   <%= render 'shared/error_messages', object: @degree %>
 
   <%#= f.hidden_field :user_id, :value => current_user.id %>
-  <%= f.hidden_field :alum_id, :value => @degree.alum.id %>
+
+  <% if @degree.alum %>
+    <%= f.hidden_field :alum_id, :value => @degree.alum.id %>
+    <%= f.label :alumni_name %>: <%= @degree.alum.first_name %> <%= @degree.alum.last_name %>
+  <% else %>
+    <%= f.select :alum_id, Alum.all.map { |u| ["#{u.first_name} #{u.last_name}", u.id] }, { selected: params[:alum_id] }, class: "form-control" %>
+  <% end %>
 
   <p>
-    <%= f.label :alumni_name %>: <%= @degree.alum.first_name %> <%= @degree.alum.last_name %>
   </p>
 
   <div class="form-group">
@@ -21,10 +26,18 @@
     <%= f.label :thesis_title %><br>
     <%= f.text_field :thesis_title, class: "form-control" %>
   </div>
-  <div class="form-group">
-    <%= f.label :supervisor %><br>
-    <%= f.select :user_id, User.all.map { |u| [u.name, u.id] }, { include_blank: "Supervisor..." }, class: "form-control" %>
+
+
+  <div id="users">
+    <%= f.fields_for :users do |t| %>
+      <%= render "user_fields", :f => t %>
+    <% end %>
   </div>
+  <div class="links">
+    <p><%= link_to_add_association "add a supervisor", f, :users %></p>
+  </div>
+
+
   <div class="form-group">
     <%= f.label :degree_notes %><br>
     <%= f.text_area :degree_notes, class: "form-control" %>
