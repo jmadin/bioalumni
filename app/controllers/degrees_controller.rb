@@ -25,31 +25,53 @@ class DegreesController < ApplicationController
   # POST /degrees
   # POST /degrees.json
   def create
-    # @degree = Degree.new(degree_params)
+    @degree = Degree.new(degree_params)
 
-    @alum = Alum.find(params[:alum_id])
-    @degree = @alum.degrees.create(degree_params)
+    if @degree.save
 
-    # @coral = Coral.find(params[:coral_id])
-    # @observation = @coral.observations.create(observation_params)
+      user_ids =  params[:degree][:users_attributes]
 
-    respond_to do |format|
-      if @degree.save
-        format.html { redirect_to alum_path(@alum), flash: {success: "Degree was successfully created." } }
-        format.json { render :show, status: :created, location: @degree }
-      else
-        format.html { redirect_to alum_path(@alum), flash: {danger: "Degree was NOT created. Did you select a degree?" } }
-        format.json { render json: @degree.errors, status: :unprocessable_entity }
+      if not user_ids.nil?
+        user_ids.keys().each do |k|
+          user = User.find(user_ids[k]["id"])
+          @degree.users << user if user_ids[k]["_destroy"] != "1" and not @degree.users.include? user
+        end
       end
+
+      if @degree.update(degree_params)
+        redirect_to alum_path(@degree.alum), flash: {success: "Degree was successfully created." }
+      else
+        render :edit
+      end
+    else
+      render :new
     end
+
+    # @alum = Alum.find(params[:alum_id])
+    # @degree = @alum.degrees.create(degree_params)
+
   end
 
   # PATCH/PUT /degrees/1
   # PATCH/PUT /degrees/1.json
   def update
+
+    @degree = Degree.find(params[:id])
+    user_ids =  params[:degree][:users_attributes]
+
+    @degree.users.delete_all()
+
+    if not user_ids.nil?
+      user_ids.keys().each do |k|
+        user = User.find(user_ids[k]["id"])
+        @degree.users << user if user_ids[k]["_destroy"] != "1" and not @degree.users.include? user
+      end
+    end
+
+
     respond_to do |format|
       if @degree.update(degree_params)
-        format.html { redirect_to alum_path(@degree.alum), flash: {danger: "Degree was successfully updated." } }
+        format.html { redirect_to alum_path(@degree.alum), flash: {success: "Degree was successfully updated." } }
         format.json { render :show, status: :ok, location: @degree }
       else
         format.html { render :edit }
@@ -76,6 +98,6 @@ class DegreesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def degree_params
-      params.require(:degree).permit(:user_id, :alum_id, :degree_type_id, :graduation_year, :thesis_title, :degree_notes)
+      params.require(:degree).permit(:alum_id, :degree_type_id, :graduation_year, :thesis_title, :degree_notes, :users_attributes)
     end
 end

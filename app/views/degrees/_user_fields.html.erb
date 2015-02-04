@@ -1,0 +1,15 @@
+<div class="nested-fields">
+
+  <div class="row">
+    <div class="col-md-9">
+  
+      <div class="form-group">
+        <%= f.select :id, User.all.map { |u| [u.name, u.id] }, { include_blank: 'Choose supervisor...', class: "form-control" } %>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <%= link_to_remove_association "remove", f %>
+    </div>
+    
+  </div>
+</div>

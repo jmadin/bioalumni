@@ -1,7 +1,9 @@
 class User < ActiveRecord::Base
 
   has_many :photos, :dependent => :destroy
-  has_many :degrees
+  # has_many :degrees
+  has_and_belongs_to_many :degrees
+  accepts_nested_attributes_for :degrees, :reject_if => :all_blank, :allow_destroy => false
 
   attr_accessor :code
 

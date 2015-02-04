@@ -8,9 +8,11 @@
     <p><%= link_to 'New Degree', new_degree_type_path, class: "btn btn-primary" %></p>
   </div>
   <div class="col-md-6">
+  <% if @chart_phds %>
     <script src='http://www.google.com/jsapi'></script>
     <div id='chart2'></div>
     <%= render_chart @chart_phds, 'chart2' %>              
+  <% end %>
   </div>
 </div>
 

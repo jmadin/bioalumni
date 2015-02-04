@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
 
-    @alums = Alum.where(:id => Degree.where(:user => @user).map(&:alum_id)).paginate(page: params[:page], per_page: 25)
+    @alums = Alum.where(:id => @user.degrees.map(&:alum_id)).paginate(page: params[:page], per_page: 25)
 
   end
 
@@ -58,7 +58,7 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation, :code)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :code, degrees_attributes: [:id, :_destroy])
     end
 
     def sort_column

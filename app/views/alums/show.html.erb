@@ -69,69 +69,22 @@
 
 <div class="well">
 
-  <h3>Degrees</h3>
+  <h3>Degrees <%= link_to 'Add Degree', new_degree_path(:alum_id => @alum), class: "btn btn-primary pull-right" %></h3><br>
 
   <ul class="list-group">
     <%= render @alum.degrees %>
   </ul>
 
-  <%= form_for([@alum, @alum.degrees.build]) do |f| %>
-    <div class="row">
-      <%= f.hidden_field :user_id, :value => current_user.id %>
-      <div class="col-md-2">
-        <%= f.select :degree_type_id, DegreeType.all.map { |u| [u.degree_type_name, u.id] }, { include_blank: "Degree..." }, class: "form-control" %>
-      </div>
-      <div class="col-md-2">
-        <%= f.date_select :graduation_year, class: "form-control" %>
-      </div>
-      <div class="col-md-4">
-        <%= f.text_field :thesis_title, :placeholder => "Thesis title...", class: "form-control" %>
-      </div>
-      <div class="col-md-2">
-        <%= f.select :user_id, User.all.map { |u| [u.name, u.id] }, { include_blank: "Supervisor..." }, class: "form-control" %>
-      </div>
-      <div class="col-md-2">
-        <%= f.submit class: "btn btn-primary pull-right" %>
-      </div>
-    </div>  
-  <% end %>
 
 </div>
 
 <div class="well">
 
-  <h3>Career records</h3>
+  <h3>Career records <%= link_to 'Add Record', new_record_path(:alum_id => @alum), class: "btn btn-primary pull-right" %></h3><br>
 
   <ul class="list-group">
     <%= render @alum.records %>
   </ul>
-
-  <%= form_for([@alum, @alum.records.build]) do |f| %>
-    <div class="row">
-      <%= f.hidden_field :user_id, :value => current_user.id %>
-      <div class="col-md-2">
-        <%#= f.text_field :career_id, class: "form-control" %>
-        <%= f.select :career_id, Career.all.map { |u| [u.career_name, u.id] }, { include_blank: "Career..." }, class: "form-control" %>
-      </div>
-      <div class="col-md-2">
-        <%= f.date_select :record_date, class: "form-control" %>
-      </div>
-      <div class="col-md-2">
-        <%= f.text_field :position_title, :placeholder => "Position title...", class: "form-control" %>
-      </div>
-      <div class="col-md-2">
-        <%= f.text_field :work_link, :placeholder => "Work link...", class: "form-control" %>
-      </div>
-      <div class="col-md-2">
-        <%= f.text_field :email, :placeholder => "Email...", class: "form-control" %>
-      </div>
-
-      <div class="col-md-2">
-        <%= f.submit class: "btn btn-primary pull-right" %>
-      </div>
-    </div>  
-
-  <% end %>
 
 </div>
 <div class="well">
