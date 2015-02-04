@@ -30,7 +30,11 @@
 
     <p>
       <strong>Until date:</strong>
-      <%= @record.until_date %>
+      <% if @record.until_date %>
+        <%= @record.until_date %>
+      <% else %>
+        Present
+      <% end %>
     </p>
 
     <p>
