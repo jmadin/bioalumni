@@ -24,7 +24,7 @@
     <%= f.select :sex, ['', 'Female', 'Male'], {:selected => @alum.sex}, class: "form-control" %>
   </div>
   <div class="form-group">
-    <%= f.label :dob %> (yyyy-mm-dd)<br>
+    <%= f.label :dob %> (yyyy/mm/dd)<br>
     <%= f.text_field :dob, {class: "form-control", id: "dob"} %>
   </div>
   <div class="form-group">
