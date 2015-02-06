@@ -35,10 +35,9 @@
     <%= f.label :alum_notes %><br>
     <%= f.text_area :alum_notes, class: "form-control" %>
   </div>
-  <div class="form-group">
-    <%= f.label :tag_list, "Tags (all lowercase, separated by commas)" %><br>
-    <%= f.text_field :tag_list, class: "form-control" %>
-  </div>
+
+  <h3>Social media</h3>
+
   <div class="well">
     <div class="form-group">
       <%= f.label :linked_in %><br>
@@ -52,6 +51,11 @@
       <%= f.label :facebook %><br>
       <%= f.text_field :facebook, class: "form-control" %>
     </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :tag_list, "Tags to help categorise the alumni, e.g., reef fish, seeds, birds, etc." %> (all lowercase, separated by commas)<br>
+    <%= f.text_field :tag_list, class: "form-control" %>
   </div>
 
   <%= f.submit class: "btn btn-default" %>
