@@ -14,7 +14,7 @@ class DegreeTypesController < ApplicationController
       data_table.new_column('number', 'BSc')
       data_table.new_column('number', 'Masters')
 
-      temp = Degree.where(:degree_type_id => 1).map { |e| e.graduation_year.year }
+      temp = Degree.map { |e| e.graduation_year.year }
 
       (temp.min..temp.max).each do |i|
         data_table.add_row([i.to_s, Degree.where("degree_type_id = ? AND strftime('%Y', graduation_year) = ?", 1, i.to_s).size, Degree.where("degree_type_id = ? AND strftime('%Y', graduation_year) = ?", 2, i.to_s).size, Degree.where("degree_type_id = ? AND strftime('%Y', graduation_year) = ?", 3, i.to_s).size])
