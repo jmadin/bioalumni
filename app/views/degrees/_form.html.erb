@@ -19,8 +19,9 @@
     <%= f.select :degree_type_id, DegreeType.all.map { |u| [u.degree_type_name, u.id] }, { include_blank: "Degree..." }, class: "form-control" %>
   </div>
   <div class="form-group">
-    <%= f.label :graduation_date %><br>
-    <%= f.date_select :graduation_year, class: "form-control" %>
+    <%= f.label :graduation_date %> (yyyy-mm-dd)<br>
+    <%#= f.date_select :graduation_year, class: "form-control" %>
+    <%= f.text_field :graduation_year, {class: "form-control", id: "grad-date"} %>
   </div>
   <div class="form-group">
     <%= f.label :thesis_title %><br>

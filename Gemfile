@@ -16,6 +16,8 @@ gem 'jquery-fileupload-rails'
 gem 'acts-as-taggable-on'
 gem 'google_visualr', '~> 2.1.0'
 
+gem 'bootstrap-datepicker-rails'
+
 group :development, :test do
 end
 
