@@ -17,31 +17,31 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :career_id %> (<%= link_to "add", new_career_path %>)<br>
+    <%= f.label :career_id %> (Can't find a suitable career in the list? Then: <%= link_to "add", new_career_path %>)<br>
     <%= f.select :career_id, Career.all.map { |u| [u.career_name, u.id] }, { include_blank: "Career..." }, class: "form-control" %>
   </div>
 
   <div class="form-group">
-    <%= f.label :from_date %> (yyyy-mm-dd)<br>
+    <%= f.label :from_date %> (yyyy/mm/dd)<br>
     <%#= f.date_select :record_date %>
     <%= f.text_field :record_date, {class: "form-control", id: "record-date"} %>
  </div>
   <div class="form-group">
-    <%= f.label :until_date %> (yyyy-mm-dd, leave blank if still in this position)<br>
+    <%= f.label :until_date %> (yyyy/mm/dd, leave blank if presently in this position)<br>
     <%#= f.date_select :until_date, {:include_blank => true, :default => nil} %>
     <%= f.text_field :until_date, {class: "form-control", id: "until-date"} %>
   </div>
 
   <div class="form-group">
-    <%= f.label :position_title %><br>
+    <%= f.label :position_title %> (e.g., Senior Manager)<br>
     <%= f.text_field :position_title, class: "form-control" %>
   </div>
   <div class="form-group">
-    <%= f.label :company_name %><br>
+    <%= f.label :company_name %> (e.g., Macquarie University, National Australia Bank)<br>
     <%= f.text_field :company_name, class: "form-control" %>
   </div>
   <div class="form-group">
-    <%= f.label :work_link %><br>
+    <%= f.label :work_link %> (include the http:// part of the link)<br>
     <%= f.text_field :work_link, class: "form-control" %>
   </div>
   <div class="form-group">
