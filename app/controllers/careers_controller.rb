@@ -15,7 +15,7 @@ class CareersController < ApplicationController
       data_table.add_row([i.career_name, Record.where("career_id = ?", i.id).size])
     end
 
-    option = { width: 400, height: 300, :title => 'Graduate careers' }
+    option = { width: 400, height: 300 }
     @chart_careers = GoogleVisualr::Interactive::PieChart.new(data_table, option)
   end
 
@@ -41,7 +41,7 @@ class CareersController < ApplicationController
 
     respond_to do |format|
       if @career.save
-        format.html { redirect_to @career, flash: {danger: "Career was successfully created." } }
+        format.html { redirect_to @career, flash: {success: "Career was successfully created." } }
         format.json { render :show, status: :created, location: @career }
       else
         format.html { render :new }
@@ -55,7 +55,7 @@ class CareersController < ApplicationController
   def update
     respond_to do |format|
       if @career.update(career_params)
-        format.html { redirect_to @career, flash: {danger: "Career was successfully updated." } }
+        format.html { redirect_to @career, flash: {success: "Career was successfully updated." } }
         format.json { render :show, status: :ok, location: @career }
       else
         format.html { render :edit }

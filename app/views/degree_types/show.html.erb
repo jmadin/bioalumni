@@ -1,20 +1,47 @@
 <p id="notice"><%= notice %></p>
 
-<div class="page-header">
-  <h1><%= @degree_type.degree_type_name %></h1>
+<div class="row">
+  <div class="col-md-6">
+
+    <div class="page-header">
+      <h1><%= @degree_type.degree_type_name %></h1>
+    </div>
+
+    <%= form_tag degrees_path, :method => :get do %>
+      <div class="input-group">
+  
+          <%= text_field_tag :search, params[:search], placeholder: "Search thesis titles...", class: "form-control search" %>
+        <span class="input-group-btn">
+          <%= submit_tag "Search", :name => nil, class: "btn btn-default" %>
+          <%= link_to 'Reset', degree_type_path(@degree_type), data: { no_turbolink: true }, class: "btn btn-default" %>
+        </span>
+      </div>
+    <% end %>
+    <br>
+
+    <p>
+      Count: <span class="badge"><%= @degree_type.degrees.size %></span>
+    </p>
+
+    <p>
+      <strong>Degree type notes:</strong>
+      <%= @degree_type.degree_type_notes %>
+    </p>
+
+    <div class="btn-group">
+      <%= link_to 'Edit', edit_degree_type_path(@degree_type), class: "btn btn-sm btn-default" %>
+      <%= link_to 'Back', degree_types_path, data: { no_turbolink: true }, class: "btn btn-sm btn-default" %>
+    </div>
+  </div>
+  <div class="col-md-6">
+
+    <% if @chart_phds %>
+      <script src='http://www.google.com/jsapi'></script>
+      <div id='chart2'></div>
+      <%= render_chart @chart_phds, 'chart2' %>              
+    <% end %>
+  </div>
 </div>
-
-<p>
-  <strong>Degree type notes:</strong>
-  <%= @degree_type.degree_type_notes %>
-</p>
-
-<div class="btn-group">
-  <%= link_to 'Edit', edit_degree_type_path(@degree_type), class: "btn btn-sm btn-default" %>
-  <%= link_to 'Back', degree_types_path, class: "btn btn-sm btn-default" %>
-</div>
-
-<hr>
 
 
 <% if @degrees.present? %>

@@ -5,7 +5,10 @@ class DegreesController < ApplicationController
   # GET /degrees
   # GET /degrees.json
   def index
-    @degrees = Degree.all
+#    @degrees = Degree.all
+
+    @degrees = Degree.paginate(page: params[:page]).search(params[:search])
+
   end
 
   # GET /degrees/1
@@ -44,7 +47,7 @@ class DegreesController < ApplicationController
         render :edit
       end
     else
-      render :new
+      render :new, alum_id: params[:degree][:alum_id]
     end
 
     # @alum = Alum.find(params[:alum_id])
@@ -98,6 +101,6 @@ class DegreesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def degree_params
-      params.require(:degree).permit(:alum_id, :degree_type_id, :graduation_year, :thesis_title, :degree_notes, :users_attributes)
+      params.require(:degree).permit(:alum_id, :degree_type_id, :approval_year, :graduation_year, :thesis_title, :degree_notes, :users_attributes)
     end
 end

@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <div class="page-header">
-  <h1><%= @alum.first_name %> <%= @alum.middle_name %> <%= @alum.last_name %></h1>
+  <h1><%= @alum.first_name %> <%= @alum.last_name %></h1>
 </div>
 
 <div class="row">
@@ -63,62 +63,38 @@
 </div>
 
 <hr>
-<p>Below you can enter information about <%= @alum.first_name %>, such as other degrees, what they're doing now (career records) and photographs.  Once you have entered information, you can edit these entries to add other details, such as notes. Let Lara (<%= mail_to "lara.ainley@students.mq.edu.au" %>) know if you don't know how to fit something.</p>
+<p>Below you can enter information about <%= @alum.first_name %> <%= @alum.last_name %>, such as other degrees, what they're doing now (career records) and photographs.  Once you have entered information, you can edit these entries to add other details, such as notes. Let Lara (<%= mail_to "lara.ainley@students.mq.edu.au" %>) know if you don't know how to fit something.</p>
 <p><label class="label label-danger">Warning</label> Please don't delete entries unless you are sure they don't belong.</p>
 
 
-<div class="well">
 
-  <h3>Degrees <%= link_to 'Add Degree', new_degree_path(:alum_id => @alum), class: "btn btn-primary pull-right" %></h3><br>
+  <h3>Degree records <%= link_to 'Add', new_degree_path(:alum_id => @alum), class: "btn btn-xs btn-default" %></h3>
 
-  <ul class="list-group">
+  <% if @alum.degrees.present? %>
+    <ul class="list-group">
     <%= render @alum.degrees %>
-  </ul>
-
-
-</div>
-
-<div class="well">
-
-  <h3>Career records <%= link_to 'Add Record', new_record_path(:alum_id => @alum), class: "btn btn-primary pull-right" %></h3><br>
-
-  <ul class="list-group">
-    <%= render @alum.records %>
-  </ul>
-
-</div>
-<div class="well">
-
-  <h3>Photos</h3>
-
-  <ul class="list-group">
-    <%= render @alum.photos.sort_by{|e| e[:created_at]} %>
-  </ul>
-
-  <%= form_for([@alum, @alum.photos.build]) do |f| %>
-    <div class="row">
-      <%= f.hidden_field :user_id, :value => current_user.id %>
-      <%= f.hidden_field :alum_id, :value => @alum.id %>
-      <div class="col-md-2">
-      </div>
-      <div class="col-md-2">
-      <%= f.date_select :photo_date, {:start_year => 1960}, class: "inline-block" %>
-      </div>
-      <div class="col-md-3">
-        <%= f.text_field :photo_filename, :placeholder => "Photo title...", class: "form-control" %>
-      </div>
-      <div class="col-md-3">
-        <%= f.file_field :photograph, class: "form-control" %>
-      </div>
-
-      <div class="col-md-2">
-        <%= f.submit "Upload Photo", class: "btn btn-primary pull-right" %>
-      </div>
-    </div>  
-
+    </ul>
+  <% else %>
+    <p class="alert alert-danger">No degrees yet.</p>
   <% end %>
 
-</div>
+  <h3>Career records <%= link_to 'Add', new_record_path(:alum_id => @alum), class: "btn btn-default btn-xs" %></h3>
+    
+  <% if @alum.records.present? %>
+    <ul class="list-group">
+    <%= render @alum.records %>
+    </ul>
+  <% else %>
+    <p class="alert alert-danger">No career records yet.</p>
+  <% end %>
 
+  <h3>Alumni photos <%= link_to 'Add', new_photo_path(:alum_id => @alum), class: "btn btn-default btn-xs" %></h3>
+  <% if @alum.photos.present? %>
+    <ul class="list-group">
+    <%= render @alum.photos.sort_by{|e| e[:created_at]} %>
+    </ul>
+  <% else %>
+    <p class="alert alert-danger">No alumni photos yet.</p>
+  <% end %>
 
 

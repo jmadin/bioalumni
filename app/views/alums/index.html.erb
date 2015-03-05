@@ -1,10 +1,6 @@
 <div class="page-header">
-  <h1>Alumni</h1>
+  <h1>Alumni <%= link_to 'Add', new_alum_path, class: "btn btn-xs btn-default" %></h1>
 </div>
-
-<p>
-  <%= link_to 'New Alumni', new_alum_path, class: "btn btn-primary pull-right" %>
-</p>
 
 <p>Tags: 
   <%= link_to "clear", alums_path, class: "label label-danger"  %>
@@ -23,23 +19,26 @@
 
 <%= will_paginate @alums %>
 
+<%#= sortable "degrees.count", "Name" %>
+
 <ul class="list-group">
-  <% @alums.each do |alum| %>
+  <% @alums.joins(:degrees).order('graduation_year IS NOT NULL, graduation_year DESC').each do |alum| %>
     <li class="list-group-item">              
       <div class="row">
         <div class="col-md-3">
           <%= link_to "#{alum.first_name} #{alum.last_name}", alum %>
         </div>
-        <div class="col-md-3">
-          
-        </div>
         <div class="col-md-2">
+          Last degree: <%= link_to alum.degrees.last.degree_type.degree_type_name, degree_type_path(alum.degrees.last.degree_type), data: { no_turbolink: true } %>
+        </div>
+        <div class="col-md-3">
+          <span class="badge"><%#= alum.degrees.count %></span>
+          Graduated: <%= alum.degrees.last.graduation_year %>
+        </div>
+        <div class="col-md-1">
           <%= alum.mq_id %>
         </div>
-        <div class="col-md-2">
-          <%= alum.alum_notes %>
-        </div>
-        <div class="col-md-2">
+        <div class="col-md-3">
           <div class="btn-group pull-right">
             <%= link_to 'Show', alum, class: "btn btn-xs btn-default" %>
             <%= link_to 'Edit', edit_alum_path(alum), class: "btn btn-xs btn-default" %>

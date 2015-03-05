@@ -8,4 +8,13 @@ class Degree < ActiveRecord::Base
   validates :degree_type, :presence => true
   
   default_scope -> { order('graduation_year ASC') }
+
+  def self.search(search)
+      if search
+        where('thesis_title LIKE ?', "%#{search}%")
+      else
+        all
+      end
+  end
+
 end

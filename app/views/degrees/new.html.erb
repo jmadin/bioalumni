@@ -4,6 +4,11 @@
 
     <%= render 'form' %>
 
-    <%= link_to 'Back', alum_path(params[:alum_id]) %>
+    <% if @degree.alum %>
+      <%= link_to 'Back', alum_path(@degree.alum) %>
+    <% else %>
+      <%= link_to 'Back', alum_path(params[:alum_id]) %>
+    <% end %>
+
   </div>
 </div>

@@ -4,6 +4,15 @@
 
 		<%= render 'form' %>
 
-		<%= link_to 'Back', photos_path %>
+
+
+    <% if @photo.alum %>
+      <%= link_to 'Back', alum_path(@photo.alum) %>
+    <% elsif params[:alum_id] %>
+      <%= link_to 'Back', alum_path(params[:alum_id]) %>
+    <% else %>
+      <%= link_to 'Back', photos_path %>
+    <% end %>
+
   </div>
 </div>

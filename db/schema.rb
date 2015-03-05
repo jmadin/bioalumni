@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150204061437) do
+ActiveRecord::Schema.define(version: 20150304215914) do
 
   create_table "alums", force: true do |t|
     t.integer  "user_id"
@@ -43,13 +43,6 @@ ActiveRecord::Schema.define(version: 20150204061437) do
 
   add_index "careers", ["user_id"], name: "index_careers_on_user_id"
 
-  create_table "categories", force: true do |t|
-    t.string   "category_name"
-    t.text     "category_description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "degree_types", force: true do |t|
     t.string   "degree_type_name"
     t.text     "degree_type_notes"
@@ -65,6 +58,7 @@ ActiveRecord::Schema.define(version: 20150204061437) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "degree_type_id"
+    t.date     "approval_year"
   end
 
   add_index "degrees", ["alum_id"], name: "index_degrees_on_alum_id"
@@ -86,12 +80,10 @@ ActiveRecord::Schema.define(version: 20150204061437) do
     t.string   "photograph_content_type"
     t.integer  "photograph_file_size"
     t.datetime "photograph_updated_at"
-    t.integer  "category_id"
     t.integer  "alum_id"
   end
 
   add_index "photos", ["alum_id"], name: "index_photos_on_alum_id"
-  add_index "photos", ["category_id"], name: "index_photos_on_category_id"
   add_index "photos", ["user_id"], name: "index_photos_on_user_id"
 
   create_table "records", force: true do |t|
@@ -142,6 +134,7 @@ ActiveRecord::Schema.define(version: 20150204061437) do
     t.string   "password_digest"
     t.string   "remember_token"
     t.boolean  "admin"
+    t.string   "surname"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

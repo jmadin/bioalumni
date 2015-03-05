@@ -2,11 +2,14 @@ class AlumsController < ApplicationController
   before_action :signed_in_user
   before_action :set_alum, only: [:show, :edit, :update, :destroy]
 
+  helper_method :sort_column, :sort_direction
+
   # GET /alums
   # GET /alums.json
   def index
     # @alums = Alum.all
-    @alums = Alum.paginate(page: params[:page], per_page: 25).search(params[:search])
+    @alums = Alum.paginate(page: params[:page]).search(params[:search])
+    # @alums = Alum.order(sort_column + " " + sort_direction).search(params[:search])
 
     if params[:tag]
       @alums = @alums.tagged_with(params[:tag])
@@ -77,4 +80,13 @@ class AlumsController < ApplicationController
     def alum_params
       params.require(:alum).permit(:user_id, :first_name, :middle_name, :last_name, :sex, :dob, :mq_id, :tag_list, :alum_notes, :linked_in, :twitter, :facebook)
     end
+
+    def sort_column
+      Alum.column_names.include?(params[:sort]) ? params[:sort] : "id"
+    end
+
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+    end
+
 end

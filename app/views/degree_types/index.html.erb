@@ -1,18 +1,26 @@
 
-<div class="page-header">
-  <h1>Degrees</h1>
-</div>
-
 <div class="row">
   <div class="col-md-6">
-    <p><%= link_to 'New Degree', new_degree_type_path, class: "btn btn-primary" %></p>
+    <div class="page-header">
+      <h1>Degrees types <%= link_to 'Add', new_degree_type_path, class: "btn btn-default btn-xs" %></h1>
+    </div>
+
+    <%= form_tag degrees_path, :method => :get do %>
+      <div class="input-group">
+  
+          <%= text_field_tag :search, params[:search], placeholder: "Search thesis titles...", class: "form-control search" %>
+        <span class="input-group-btn">
+          <%= submit_tag "Search", :name => nil, class: "btn btn-default" %>
+          <%= link_to 'Reset', degree_types_path, data: { no_turbolink: true }, class: "btn btn-default" %>
+        </span>
+      </div>
+    <% end %>
+    <!-- <p>Download list as <%#= link_to "CSV", users_path(format: "csv") %>.</p> -->
   </div>
   <div class="col-md-6">
-  <% if @chart_phds %>
     <script src='http://www.google.com/jsapi'></script>
-    <div id='chart2'></div>
-    <%= render_chart @chart_phds, 'chart2' %>              
-  <% end %>
+    <div id='chart1'></div>
+    <%= render_chart @chart_careers, 'chart1' %>              
   </div>
 </div>
 
@@ -21,7 +29,7 @@
     <li class="list-group-item">              
       <div class="row">
         <div class="col-sm-3">
-          <%= link_to degree_type.degree_type_name, degree_type %>
+          <%= link_to degree_type.degree_type_name, degree_type, data: { no_turbolink: true } %>
         </div>
         <div class="col-sm-2">
           <span class="badge"><%= degree_type.degrees.size %></span>
@@ -31,7 +39,7 @@
         </div>
         <div class="col-sm-3">
           <div class="btn-group pull-right">        
-            <%= link_to 'Show', degree_type, class: "btn btn-default btn-xs" %>
+            <%= link_to 'Show', degree_type, data: { no_turbolink: true }, class: "btn btn-default btn-xs" %>
             <%= link_to 'Edit', edit_degree_type_path(degree_type), class: "btn btn-default btn-xs" %>
             <%= link_to 'Delete', degree_type, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-xs" %>
           </div>

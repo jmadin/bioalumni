@@ -1,7 +1,7 @@
 <li class="list-group-item">              
   <div class="row">
     <div class="col-md-2">
-      <% if @career %>
+      <% if @career || @records %>
         <%= link_to "#{record.alum.first_name} #{record.alum.last_name}", alum_path(record.alum) %>
       <% end %>
       <% if @alum %>

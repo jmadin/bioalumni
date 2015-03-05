@@ -9,3 +9,11 @@ $ ->
       autoclose: true,
       todayHighlight: true
   });
+
+$ ->
+  $('#appr-date').datepicker({
+      format: "yyyy/mm/dd",
+      startView: 2,
+      autoclose: true,
+      todayHighlight: true
+  });

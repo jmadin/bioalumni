@@ -3,22 +3,27 @@
     <div class="col-md-2">
       <%#= degree.degree_type.degree_type_name %>
       <% if @alum %>
-        <%= link_to degree.degree_type.degree_type_name, degree_type_path(degree.degree_type) %>
+        <%= link_to degree.degree_type.degree_type_name, degree_type_path(degree.degree_type), data: { no_turbolink: true } %>
       <% end %>
-      <% if @degree_type %>
-        <%= link_to "#{degree.alum.first_name} #{degree.alum.last_name}", alum_path(degree.alum) %>
+      <% if @degree_type || @degrees %>
+        <%= link_to "#{degree.alum.first_name} #{degree.alum.last_name}", alum_path(degree.alum), data: { no_turbolink: true } %>
       <% end %>
     </div>
     <div class="col-md-2">
-      <%= degree.graduation_year %>
+      Approved: <%= degree.approval_year %><br>
+      <% if degree.graduation_year.present? %>
+        Graduated: <%= degree.graduation_year %>
+      <% else %>
+        Graduated: no
+      <% end %>
     </div>
     <div class="col-md-4">
-      <%= degree.thesis_title %>
+      <em><%= degree.thesis_title %></em>
     </div>
     <div class="col-md-2">
       <% if not degree.users.empty? %>
         <% degree.users.each do |user| %>
-        <%= link_to user.name, user %><br>
+        <%= link_to "#{user.name} #{user.surname}", user, data: { no_turbolink: true } %><br>
         <% end %>
       <% end %>
     </div>

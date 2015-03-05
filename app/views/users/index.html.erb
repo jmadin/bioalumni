@@ -4,12 +4,31 @@
   <h1>Supervisors</h1>
 </div>
 
+<div class="row">
+  <div class="col-md-6">
+    <%= form_tag users_path, :method => :get do %>
+      <div class="input-group">
+  
+          <%= text_field_tag :search, params[:search], placeholder: "Search supervisors...", class: "form-control search" %>
+        <span class="input-group-btn">
+          <%= submit_tag "Search", :name => nil, class: "btn btn-default" %>
+          <%= link_to 'Reset', users_path, class: "btn btn-default" %>
+        </span>
+      </div>
+    <% end %>
+    <!-- <p>Download list as <%#= link_to "CSV", users_path(format: "csv") %>.</p> -->
+  </div>
+</div>
+
+<br>
+<%#= will_paginate @alums %>
+
 <ul class="list-group">
   <% @users.each do |user| %>
     <li class="list-group-item">              
       <div class="row">
         <div class="col-md-4">
-          <%= link_to user.name, user %>
+          <%= link_to "#{user.name} #{user.surname}", user, data: { no_turbolink: true } %>
         </div>
         <div class="col-md-3">
           <%= mail_to user.email %>
@@ -24,8 +43,9 @@
         </div>
         <div class="col-md-3">
           <div class="btn-group pull-right">
-            <%= link_to 'Show', user_path(user), class: "btn btn-xs btn-default" %>
+            <%= link_to 'Show', user_path(user), data: { no_turbolink: true }, class: "btn btn-xs btn-default" %>
             <% if current_user.admin && !current_user?(user) %>
+              <%= link_to 'Edit', edit_user_path(user), class: "btn btn-xs btn-default" %>
               <%= link_to "Delete", user, method: :delete, data: { confirm: "You sure?" }, class: "btn btn-xs btn-danger" %>
             <% end %>
           </div>
@@ -34,3 +54,5 @@
     </li>
   <% end %>
 </ul>
+
+<%#= will_paginate @alums %>

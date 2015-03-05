@@ -30,8 +30,10 @@
                 Data<b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
-                <li><%= link_to "Careers", careers_path, data: { no_turbolink: true } %></li>
+                <li><%= link_to "Supervisors", users_path %></li>
                 <li><%= link_to "Degrees", degree_types_path, data: { no_turbolink: true } %></li>
+                <li><%= link_to "Careers", careers_path, data: { no_turbolink: true } %></li>
+                <li><%= link_to "Photos", photos_path %></li>
 
               </ul>
             </li>
@@ -54,12 +56,11 @@
           <% if signed_in? %>
             <li id="fat-menu" class="dropdown" style="text-align: left;">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <%= current_user.name %><b class="caret"></b>
+                <%= current_user.name %> <%= current_user.surname %><b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
                 <li><%= link_to "My alumni", current_user, data: { no_turbolink: true } %></li>
                 <li><%= link_to "Settings", edit_user_path(current_user) %></li>
-                <li><%= link_to "Users", users_path %></li>
 
                 <% if current_user.admin? %>
                   <li><%= link_to "New User", signup_path %></li>

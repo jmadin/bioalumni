@@ -3,6 +3,7 @@ class StaticPagesController < ApplicationController
 
   def home
 
+
     data_table = GoogleVisualr::DataTable.new
     data_table.new_column('string')
     data_table.new_column('number')
@@ -17,17 +18,16 @@ class StaticPagesController < ApplicationController
 
     data_table = GoogleVisualr::DataTable.new
     data_table.new_column('string', 'Year')
-    data_table.new_column('number', 'PhD')
-    data_table.new_column('number', 'BSc')
-    data_table.new_column('number', 'Masters')
+    data_table.new_column('number', 'PhD Biol')
+    data_table.new_column('number', 'PhD BBE')
 
-    temp = Degree.all.map { |e| e.graduation_year.year }
+    temp = Degree.where('graduation_year IS NOT NULL').map { |e| e.graduation_year.year }
 
     (temp.min..temp.max).each do |i|
-      data_table.add_row([i.to_s, Degree.where("degree_type_id = ? AND strftime('%Y', graduation_year) = ?", 1, i.to_s).size, Degree.where("degree_type_id = ? AND strftime('%Y', graduation_year) = ?", 2, i.to_s).size, Degree.where("degree_type_id = ? AND strftime('%Y', graduation_year) = ?", 3, i.to_s).size])
+      data_table.add_row([i.to_s, Degree.where("degree_type_id = ? AND strftime('%Y', graduation_year) = ?", 1, i.to_s).size, Degree.where("degree_type_id = ? AND strftime('%Y', graduation_year) = ?", 5, i.to_s).size])
     end
 
-    option = { width: 400, height: 300, :title => 'Graduations' }
+    option = { width: 400, height: 300, :title => 'Biology PhDs' }
     @chart_phds = GoogleVisualr::Interactive::ColumnChart.new(data_table, option)
   end
 

@@ -1,14 +1,14 @@
 <%= form_for(@photo) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 
-  <% if params[:user] %>
-    <%= hidden_field_tag :user, params[:user] %>
-  <% end %>
+  <%= f.hidden_field :user_id, :value => current_user.id %>
 
-  <div class="form-group">
-    <%= f.label :alumni %><br>
-      <%= f.select :alum_id, Alum.all.map { |u| ["#{u.first_name} #{u.last_name}", u.id] }, {}, class: "form-control" %>
-  </div>
+  <% if @photo.alum %>
+    <%= f.hidden_field :alum_id, :value => @photo.alum.id %>
+    <%= f.label :alumni_name %>: <%= @photo.alum.first_name %> <%= @photo.alum.last_name %>
+  <% else %>
+    <%= f.select :alum_id, Alum.all.map { |u| ["#{u.first_name} #{u.last_name}", u.id] }, { selected: params[:alum_id] }, class: "form-control" %>
+  <% end %>
 
   <div class="form-group">
     <%= f.label :title %><br>

@@ -2,62 +2,72 @@
 
   <%= render 'shared/error_messages', object: @alum %>
 
+  <div class="row">
+    <div class="col-md-6">
 
-  <div class="form-group">
-    <%= f.label "Enterer:" %> <%= current_user.name %>
-    <%= f.hidden_field :user_id, :value => current_user.id %>
-  </div>
-  <div class="form-group">
-    <%= f.label :first_name %><br>
-    <%= f.text_field :first_name, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :middle_name %><br>
-    <%= f.text_field :middle_name, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :last_name %><br>
-    <%= f.text_field :last_name, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :sex %><br>
-    <%= f.select :sex, ['', 'Female', 'Male'], {:selected => @alum.sex}, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :dob %> (yyyy/mm/dd)<br>
-    <%= f.text_field :dob, {class: "form-control", id: "dob"} %>
-  </div>
-  <div class="form-group">
-    <%= f.label "Macquarie ID" %><br>
-    <%= f.text_field :mq_id, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :alum_notes %><br>
-    <%= f.text_area :alum_notes, class: "form-control" %>
-  </div>
+      <div class="form-group">
+        <%= f.label "Enterer:" %> <%= current_user.name %>
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+      </div>
+      <div class="form-group">
+        <%= f.label :first_name %><br>
+        <%= f.text_field :first_name, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :middle_name %><br>
+        <%= f.text_field :middle_name, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :last_name %><br>
+        <%= f.text_field :last_name, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :sex %><br>
+        <%= f.select :sex, ['', 'Female', 'Male'], {:selected => @alum.sex}, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :dob %> (yyyy/mm/dd)<br>
+        <%= f.text_field :dob, {class: "form-control", id: "dob"} %>
+      </div>
+      <div class="form-group">
+        <%= f.label "Macquarie ID" %><br>
+        <%= f.text_field :mq_id, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :alum_notes %><br>
+        <%= f.text_area :alum_notes, class: "form-control" %>
+      </div>
 
-  <h3>Social media</h3>
-
-  <div class="well">
-    <div class="form-group">
-      <%= f.label :linked_in %><br>
-      <%= f.text_field :linked_in, class: "form-control" %>
     </div>
-    <div class="form-group">
-      <%= f.label :twitter %><br>
-      <%= f.text_field :twitter, class: "form-control" %>
-    </div>
-    <div class="form-group">
-      <%= f.label :facebook %><br>
-      <%= f.text_field :facebook, class: "form-control" %>
+    <div class="col-md-6">
+
+      <h3>Social media</h3>
+
+      <div class="well">
+        <div class="form-group">
+          <%= f.label :linked_in %><br>
+          <%= f.text_field :linked_in, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :twitter %><br>
+          <%= f.text_field :twitter, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :facebook %><br>
+          <%= f.text_field :facebook, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :tag_list, "Tags to help categorise the alumni, e.g., reef fish, seeds, birds, etc." %> (all lowercase, separated by commas)<br>
+        <%= f.text_field :tag_list, class: "form-control" %>
+      </div>
+
+
+
     </div>
   </div>
-
-  <div class="form-group">
-    <%= f.label :tag_list, "Tags to help categorise the alumni, e.g., reef fish, seeds, birds, etc." %> (all lowercase, separated by commas)<br>
-    <%= f.text_field :tag_list, class: "form-control" %>
-  </div>
-
+  
   <%= f.submit class: "btn btn-default" %>
 
 <% end %>

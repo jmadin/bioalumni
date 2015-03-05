@@ -1,37 +1,29 @@
-<h1>Listing degrees</h1>
+<div class="page-header">
+  <h1>Degrees</h1>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Alum</th>
-      <th>Degree name</th>
-      <th>Graduation year</th>
-      <th>Thesis title</th>
-      <th>Degree notes</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @degrees.each do |degree| %>
-      <tr>
-        <td><%= degree.user %></td>
-        <td><%= degree.alum %></td>
-        <td><%= degree.degree_name %></td>
-        <td><%= degree.graduation_year %></td>
-        <td><%= degree.thesis_title %></td>
-        <td><%= degree.degree_notes %></td>
-        <td><%= link_to 'Show', degree %></td>
-        <td><%= link_to 'Edit', edit_degree_path(degree) %></td>
-        <td><%= link_to 'Destroy', degree, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+<div class="row">
+  <div class="col-md-6">
+    <%= form_tag degrees_path, :method => :get do %>
+      <div class="input-group">
+  
+          <%= text_field_tag :search, params[:search], placeholder: "Search thesis titles...", class: "form-control search" %>
+        <span class="input-group-btn">
+          <%= submit_tag "Search", :name => nil, class: "btn btn-default" %>
+          <%= link_to 'Reset', degree_types_path, data: { no_turbolink: true }, class: "btn btn-default" %>
+        </span>
+      </div>
     <% end %>
-  </tbody>
-</table>
+  </div>
+</div>
 
-<br>
+<hr>
 
-<%= link_to 'New Degree', new_degree_path %>
+<%= will_paginate @degrees %>
+
+<ul class="list-group">
+  <%= render @degrees %>
+</ul>
+
+<%= will_paginate @degrees %>

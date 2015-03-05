@@ -31,6 +31,7 @@ Biolumni::Application.routes.draw do
   resources :sessions,      only: [:new, :create, :destroy]
 
   get 'tags/:tag', to: 'alums#index', as: :tag
+  get 'photo_tags/:tag', to: 'photos#index', as: :photo_tag
 
   # root to: 'photos#index'
   

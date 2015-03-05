@@ -13,7 +13,12 @@
     </p>
 
     <p>
-      <strong>Graduation year:</strong>
+      <strong>Degree approval date:</strong>
+      <%= @degree.approval_year %>
+    </p>
+
+    <p>
+      <strong>Graduation date:</strong>
       <%= @degree.graduation_year %>
     </p>
 
@@ -21,6 +26,14 @@
       <strong>Thesis title:</strong>
       <%= @degree.thesis_title %>
     </p>
+
+    <p>
+      <strong>Supervisor/s:</strong>
+      <% @degree.users.each do |s| %>
+        <li><%= link_to "#{s.name} #{s.surname}", user_path(s), data: { no_turbolink: true } %></li>
+      <% end %>
+    </p>
+
 
     <p>
       <strong>Degree notes:</strong>

@@ -7,7 +7,9 @@ class PhotosController < ApplicationController
   # GET /photos
   # GET /photos.json
   def index
-    @photos = Photo.order(sort_column + " " + sort_direction).paginate(page: params[:page], per_page: 10)
+    # @photos = Photo.order(sort_column + " " + sort_direction).paginate(page: params[:page], per_page: 10)
+
+    @photos = Photo.paginate(page: params[:page]).search(params[:search])
 
     if params[:tag]
       @photos = @photos.tagged_with(params[:tag])
@@ -32,15 +34,14 @@ class PhotosController < ApplicationController
   # POST /photos
   # POST /photos.json
   def create
-    @alum = Alum.find(params[:alum_id])
+    @alum = Alum.find(photo_params[:alum_id])
     @photo = Photo.new(photo_params)
 
     if @photo.save
       redirect_to alum_path(@photo.alum)
       flash[:success] = "Photo was successfully created."
     else
-      redirect_to alum_path(@alum)
-      flash[:danger] = "Photo was NOT uploaded. Did you select a file?"
+      render :new
     end
   end
 
