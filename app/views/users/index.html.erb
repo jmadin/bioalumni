@@ -29,6 +29,9 @@
       <div class="row">
         <div class="col-md-4">
           <%= link_to "#{user.name} #{user.surname}", user, data: { no_turbolink: true } %>
+          <% if current_user.admin? && user.last_seen_at %>
+            <br>Last seen: <%= distance_of_time_in_words(user.last_seen_at, Time.now) %> ago
+          <% end %>        
         </div>
         <div class="col-md-3">
           <%= mail_to user.email %>
