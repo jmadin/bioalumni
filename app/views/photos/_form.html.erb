@@ -20,15 +20,15 @@
     <%= f.date_select :photo_date, {:start_year => 1960, :end_year => Time.now.year}, class: "inline-block" %>
   </div>
   <div class="form-group">
-    <%= f.label :photo_notes %><br>
+    <%= f.label :notes %><br>
     <%= f.text_area :photo_notes, class: "form-control" %>
   </div>
 
-  <div class="form-group">
-    <%= f.label :tag_list, "Tags (all lowercase, separated by commas)" %><br>
-    <%= f.text_field :tag_list, class: "form-control" %>
+<!--   <div class="form-group">
+    <%#= f.label :tag_list, "Tags (all lowercase, separated by commas)" %><br>
+    <%#= f.text_field :tag_list, class: "form-control" %>
   </div>
-
+ -->
   <div class="form-group">
     <%= f.file_field :photograph, class: "form-control" %>
   </div>

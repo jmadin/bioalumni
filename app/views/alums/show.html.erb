@@ -88,7 +88,7 @@
     <p class="alert alert-danger">No career records yet.</p>
   <% end %>
 
-  <h3>Alumni photos <%= link_to 'Add', new_photo_path(:alum_id => @alum), class: "btn btn-default btn-xs" %></h3>
+  <h3>Alumni uploads <%= link_to 'Add', new_photo_path(:alum_id => @alum), class: "btn btn-default btn-xs" %></h3>
   <% if @alum.photos.present? %>
     <ul class="list-group">
     <%= render @alum.photos.sort_by{|e| e[:created_at]} %>

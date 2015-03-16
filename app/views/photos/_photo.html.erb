@@ -1,13 +1,12 @@
 <li class="list-group-item">              
   <div class="row">
     <div class="col-md-2">
-      <%# if @career %>
-        <%#= link_to "#{record.alum.first_name} #{record.alum.last_name}", alum_path(record.alum) %>
-      <%# end %>
-      <%# if @alum %>
-        <%#= link_to record.career.career_name, career_path(record.career) %>
-      <%# end %>
-      <%= link_to image_tag(photo.photograph.url(:thumb)), photo %>
+      
+      <% if photo.photograph.content_type == 'application/pdf' %>
+          <%= link_to "PDF", photo %>
+      <% else %>
+          <%= link_to image_tag(photo.photograph.url(:thumb)), photo %>
+      <% end %>
     </div>
     <div class="col-md-2">
       <%= photo.photo_date %>

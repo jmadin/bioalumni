@@ -12,7 +12,7 @@
         </p>
 
         <p>
-          <strong>Photo name:</strong>
+          <strong>Upload name:</strong>
           <%= @photo.photo_filename %>
         </p>
 
@@ -38,8 +38,16 @@
 
       </div><br>
       <div class="col-md-6">
-        <strong>Current photograph:</strong><br>
-        <%= image_tag @photo.photograph.url(:medium) %><br><br>
+        <strong>Current upload:</strong><br>
+        
+        <% if @photo.photograph.content_type == 'application/pdf' %>
+           <iframe src=<%= @photo.photograph.url(:original) %> frameborder="0", height="400px"></iframe>
+        <% else %>
+            <%= image_tag @photo.photograph.url(:medium) %>
+        <% end %>
+        <br><br>
+
+
         <%= link_to "Download", image_path(@photo.photograph.url(:original)), :target => "_blank", class: "btn btn-default" %>
 
       </div>
