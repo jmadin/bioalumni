@@ -1,10 +1,20 @@
 <div class="nested-fields">
 
+  <% @random_number = rand(50).to_s %>
+
+  <script>
+    var a = 0;
+    $(document).ready(function() {
+      $('select.my_trait').select2();
+    });
+  </script>
+
   <div class="row">
     <div class="col-md-9">
   
       <div class="form-group">
-        <%= f.select :id, User.all.map { |u| ["#{u.name} #{u.surname}", u.id] }, { include_blank: 'Choose supervisor...', class: "form-control" } %>
+        <%#= f.select :id, User.all.map { |u| ["#{u.name} #{u.surname}", u.id] }, { include_blank: 'Choose supervisor...', class: "form-control" } %>
+      <%= f.select :id, User.all.map { |u| ["#{u.name} #{u.surname}", u.id] }, { include_blank: 'Choose name...', class: "form-control" }, { class: "my_trait" } %>
       </div>
     </div>
     <div class="col-md-3">

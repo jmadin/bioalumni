@@ -34,10 +34,19 @@ class DegreesController < ApplicationController
 
       user_ids =  params[:degree][:users_attributes]
 
+      # if not user_ids.nil?
+      #   user_ids.keys().each do |k|
+      #     user = User.find(user_ids[k]["id"])
+      #     @degree.users << user if user_ids[k]["_destroy"] != "1" and not @degree.users.include? user and not user_ids[k].empty?
+      #   end
+      # end
+
       if not user_ids.nil?
         user_ids.keys().each do |k|
-          user = User.find(user_ids[k]["id"])
-          @degree.users << user if user_ids[k]["_destroy"] != "1" and not @degree.users.include? user
+          if not user_ids[k]["id"].empty? 
+            user = User.find(user_ids[k]["id"])
+            @degree.users << user if user_ids[k]["_destroy"] != "1" and not @degree.users.include? user
+          end
         end
       end
 
@@ -62,12 +71,18 @@ class DegreesController < ApplicationController
     @degree = Degree.find(params[:id])
     user_ids =  params[:degree][:users_attributes]
 
+    puts user_ids
+
     @degree.users.delete_all()
 
     if not user_ids.nil?
       user_ids.keys().each do |k|
-        user = User.find(user_ids[k]["id"])
-        @degree.users << user if user_ids[k]["_destroy"] != "1" and not @degree.users.include? user
+        if not user_ids[k]["id"].empty? 
+          puts user_ids[k].inspect
+          puts "------------------------------ HERE -------------------------------"
+          user = User.find(user_ids[k]["id"])
+          @degree.users << user if user_ids[k]["_destroy"] != "1" and not @degree.users.include? user
+        end
       end
     end
 

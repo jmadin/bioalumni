@@ -46,18 +46,32 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    if @user.code == "e8b"
+
+    if current_user.admin?
+      @user.code = "e8b"
+      @user.password = "sunflower9"
+      @user.password_confirmation = "sunflower9"
+      @user.email = "#{@user.name.downcase}.#{@user.surname.downcase}@mq.edu.au"
       if @user.save
-        sign_in @user
-        flash[:success] = "Welcome to Biolumni"
+        flash[:success] = "Supervisor added"
         redirect_to @user
       else
         render 'new'
       end
     else
-      flash.now[:danger] = "You need the code from the HoD."
-      render 'new'
-   end
+      if @user.code == "e8b"
+        if @user.save
+          sign_in @user
+          flash[:success] = "Welcome to Biolumni"
+          redirect_to @user
+        else
+          render 'new'
+        end
+      else
+        flash.now[:danger] = "You need the code from the HoD."
+        render 'new'
+      end
+    end
   end
 
   def edit

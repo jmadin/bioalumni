@@ -19,6 +19,7 @@
 //= require jquery.turbolinks
 //= require jquery-fileupload/basic
 //= require jquery-fileupload/vendor/tmpl
+//= require select2
 //= require bootstrap-datepicker
 //= require bootstrap-datepicker/core
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.es.js

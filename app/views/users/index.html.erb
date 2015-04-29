@@ -1,7 +1,10 @@
 <% provide(:title, "Supervisors") %>
 
 <div class="page-header">
-  <h1>Supervisors</h1>
+  <h1>Supervisors
+  <% if current_user.admin? %>
+    <%= link_to 'Add', new_user_path, class: "btn btn-default btn-xs" %></h1>
+  <% end %>
 </div>
 
 <div class="row">

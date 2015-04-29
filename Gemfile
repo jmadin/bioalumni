@@ -17,6 +17,7 @@ gem 'acts-as-taggable-on'
 gem 'google_visualr', '~> 2.1.0'
 
 gem 'bootstrap-datepicker-rails'
+gem 'select2-rails'
 
 group :development, :test do
 end
