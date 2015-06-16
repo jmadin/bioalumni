@@ -38,7 +38,9 @@
           <%= link_to 'Show', degree_path(degree), class: "btn btn-xs btn-default" %>
         <% end %>
         <%= link_to 'Edit', edit_degree_path(degree), class: "btn btn-xs btn-default" %>
-        <%= link_to 'Delete', degree, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-danger" %>
+        <% if current_user.admin %>
+          <%= link_to 'Delete', degree, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-danger" %>
+        <% end %>
       </div>
     </div>
   </div>

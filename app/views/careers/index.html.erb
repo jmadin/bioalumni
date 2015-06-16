@@ -46,7 +46,9 @@
           <div class="btn-group pull-right">        
             <%= link_to 'Show', career, class: "btn btn-default btn-xs" %>
             <%= link_to 'Edit', edit_career_path(career), class: "btn btn-default btn-xs" %>
-            <%= link_to 'Delete', career, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-xs" %>
+            <% if current_user.admin %>
+              <%= link_to 'Delete', career, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-xs" %>
+            <% end %>
           </div>
         </div>
       </div>

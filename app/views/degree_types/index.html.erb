@@ -40,8 +40,10 @@
         <div class="col-sm-3">
           <div class="btn-group pull-right">        
             <%= link_to 'Show', degree_type, data: { no_turbolink: true }, class: "btn btn-default btn-xs" %>
-            <%= link_to 'Edit', edit_degree_type_path(degree_type), class: "btn btn-default btn-xs" %>
-            <%= link_to 'Delete', degree_type, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-xs" %>
+            <% if current_user.admin %>
+              <%= link_to 'Edit', edit_degree_type_path(degree_type), class: "btn btn-default btn-xs" %>
+              <%= link_to 'Delete', degree_type, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-xs" %>
+            <% end %>
           </div>
         </div>
       </div>
