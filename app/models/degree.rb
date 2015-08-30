@@ -11,12 +11,8 @@ class Degree < ActiveRecord::Base
 
   searchable do
     text :thesis_title  
-    date :graduation_year 
+    text :graduation_year 
     text :degree_notes 
-    integer :alum_id 
-    string :graduation_year_str do 
-      graduation_year
-    end
   end
 
 end

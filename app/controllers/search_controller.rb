@@ -4,7 +4,7 @@ class SearchController < ApplicationController
 	def index
 		if params[:search] && params[:search] != ""
 			if not params[:model_name]
-				params[:model_name] = ['Alum', 'Career', 'Degree_type', 'User', 'Photo']
+				params[:model_name] = ['Alum', 'Career', 'Record', 'Degree_type', 'Degree', 'User', 'Photo']
 				# params[:model_name] = ['Alum']
 			end
 

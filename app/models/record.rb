@@ -7,12 +7,15 @@ class Record < ActiveRecord::Base
   
   default_scope -> { order('record_date ASC') }
 
-  def self.search(search)
-      if search
-        where('position_title LIKE ? OR company_name LIKE ?', "%#{search}%", "%#{search}%")
-      else
-        all
-      end
+  searchable do
+    text :work_link  
+    text :email  
+    text :work_link  
+    text :phone 
+    text :record_notes 
+    text :position_title 
+    text :company_name 
   end
 
 end
+

@@ -4,7 +4,7 @@
   <div class="col-md-6 col-md-offset-3">
 
     <div class="page-header">
-      <h1>Degree record: <%= @degree.alum.first_name %> <%= @degree.alum.last_name %></h1>
+      <h1>Degree record for <%= link_to "#{@degree.alum.first_name} #{@degree.alum.last_name}", alum_path(@degree.alum) %></h1>
     </div>
 
     <p>
