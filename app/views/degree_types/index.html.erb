@@ -5,16 +5,6 @@
       <h1>Degrees types <%= link_to 'Add', new_degree_type_path, class: "btn btn-default btn-xs" %></h1>
     </div>
 
-    <%= form_tag degrees_path, :method => :get do %>
-      <div class="input-group">
-  
-          <%= text_field_tag :search, params[:search], placeholder: "Search thesis titles...", class: "form-control search" %>
-        <span class="input-group-btn">
-          <%= submit_tag "Search", :name => nil, class: "btn btn-default" %>
-          <%= link_to 'Reset', degree_types_path, data: { no_turbolink: true }, class: "btn btn-default" %>
-        </span>
-      </div>
-    <% end %>
     <!-- <p>Download list as <%#= link_to "CSV", users_path(format: "csv") %>.</p> -->
   </div>
   <div class="col-md-6">

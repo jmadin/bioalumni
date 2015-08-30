@@ -6,7 +6,7 @@ class RecordsController < ApplicationController
   # GET /records.json
   def index
     # @records = Record.all
-    @records = Record.paginate(page: params[:page]).search(params[:search])
+    @records = Record.paginate(page: params[:page])
   end
 
   # GET /records/1

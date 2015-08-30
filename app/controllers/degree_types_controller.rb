@@ -5,7 +5,7 @@ class DegreeTypesController < ApplicationController
   # GET /degree_types
   # GET /degree_types.json
   def index
-    @degree_types = DegreeType.all
+    @degree_types = DegreeType.all.sort_by { |x| x.degrees.size }.reverse
 
     data_table = GoogleVisualr::DataTable.new
     data_table.new_column('string')
@@ -17,7 +17,6 @@ class DegreeTypesController < ApplicationController
 
     option = { width: 400, height: 300 }
     @chart_careers = GoogleVisualr::Interactive::PieChart.new(data_table, option)
-
 
 
     # if @degree_types.present?

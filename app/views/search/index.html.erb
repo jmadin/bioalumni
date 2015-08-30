@@ -1,0 +1,104 @@
+
+<div class="col-md-3">
+	<h1>Search</h1>
+	<hr>
+		
+	<div class="ui-widget">
+  	<%= form_tag search_index_path, :method => :get do %>
+			<div class="form-group">
+		    <%#= text_field_tag :search, params[:search],  { class: "form-control search", placeholder: "Search..." }   %>
+			</div>
+		    <%= hidden_field_tag :search, params[:search] %>
+	    
+			<div class="form-group">
+		    Limit search to (optional):
+		    <%= select_tag :model_name, options_for_select(['Alum', 'Career', 'Degree_type', 'User', 'Photo'], params[:model_name]), { :multiple => true, :size =>7, class: "form-control"} %>
+			</div>
+
+	    <%= submit_tag "Search Again", class: "btn btn-primary" %>
+		<% end %>
+	</div>
+</div>
+
+<div class="col-md-9">
+
+	<% if defined?(@result_present) %>
+		<!-- <h4>Results...</h4> -->
+	<% end %>
+	
+	<% if (defined?(@result_present) ) && (not @result_present )%>
+		<div class="alert alert-danger">Your query did not result any results.</div>
+	<% end %>
+
+	<% if (not defined?(@result_present) ) && (not @result_present )%>
+		<div class="alert alert-danger">No query entered.</div>
+	<% end %>
+
+	<% if @alum_search  %>
+		<% if not @alum_search.results.blank? %>
+			<h4>Alumni</h4>
+		<% end %>
+		<ul class="list-group">
+			<% @alum_search.results.sort_by{|e| e[:last_name]}.each do |s| %>
+	     	<li class="list-group-item">							
+					<%= link_to "#{s.first_name} #{s.last_name}", s %>
+				</li>
+			<% end %>
+		</ul>
+	<% end %>
+
+	<% if @career_search %>
+		<% if not @career_search.results.blank? %>
+			<h4>Careers</h4>
+		<% end %>
+		<ul class="list-group">
+			<% @career_search.results.sort_by{|e| e[:career_name]}.each do |s| %>
+	     	<li class="list-group-item">							
+					<%= link_to s.career_name, s %>
+				</li>
+			<% end %>
+		</ul>
+	<% end %>
+
+	<% if @degree_type_search %>
+		<% if not @degree_type_search.results.blank? %>
+			<h4>Degree types</h4>
+		<% end %>
+		<ul class="list-group">
+			<% @degree_type_search.results.sort_by{|e| e[:degree_type_name]}.each do |s| %>
+	     	<li class="list-group-item">							
+					<%= link_to s.degree_type_name, s %>
+				</li>
+			<% end %>
+		</ul>
+	<% end %>
+
+
+	<% if @user_search %>
+		<% if not @user_search.results.blank? %>
+			<h4>Supervisors</h4>
+		<% end %>
+		<ul class="list-group">
+			<% @user_search.results.sort_by{|e| e[:surname]}.each do |s| %>
+	     	<li class="list-group-item">							
+					<%= link_to "#{s.name} #{s.surname}", s %>
+				</li>
+			<% end %>
+		</ul>
+	<% end %>
+
+	<% if @photo_search %>
+		<% if not @photo_search.results.blank? %>
+			<h4>Attachements</h4>
+		<% end %>
+		<ul class="list-group">
+			<% @photo_search.results.sort_by{|e| e[:photo_filename]}.each do |s| %>
+	     	<li class="list-group-item">							
+		        	<%= link_to s.photo_filename, s %>
+				</li>
+			<% end %>
+		</ul>
+	<% end %>
+
+
+</div>

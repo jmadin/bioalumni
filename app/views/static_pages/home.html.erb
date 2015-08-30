@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-10 col-md-offset-1">
+  <div class="col-lg-10 col-lg-offset-1">
 
     <div class="jumbotron">
       <h1>Biolumni<font style="color:orange;"></font></h1>
@@ -8,7 +8,7 @@
 			<% if signed_in? %>
         <hr>
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-lg-6">
             <div id="tag_cloud">
               <% tag_cloud Alum.tag_counts.sort { |x, y| x.name <=> y.name }, %w{s m l} do |tag, css_class| %>
                 <%= link_to tag.name, tag_path(tag.name), class: "label label-primary"  %>
@@ -19,12 +19,12 @@
         <br>
       <% end %>
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-lg-6">
           <script src='http://www.google.com/jsapi'></script>
           <div id='chart1'></div>
           <%= render_chart @chart_careers, 'chart1' %>   <br>           
         </div>
-        <div class="col-md-6">
+        <div class="col-lg-6">
           <div id='chart2'></div>
           <%= render_chart @chart_phds, 'chart2' %>              
         </div>

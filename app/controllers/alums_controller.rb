@@ -7,9 +7,7 @@ class AlumsController < ApplicationController
   # GET /alums
   # GET /alums.json
   def index
-    # @alums = Alum.all
-    @alums = Alum.paginate(page: params[:page]).search(params[:search])
-    # @alums = Alum.order(sort_column + " " + sort_direction).search(params[:search])
+    @alums = Alum.paginate(page: params[:page])
 
     if params[:tag]
       @alums = @alums.tagged_with(params[:tag])

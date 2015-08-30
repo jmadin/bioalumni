@@ -6,9 +6,8 @@ class UsersController < ApplicationController
   helper_method :sort_column, :sort_direction
 
   def index
-    @users = User.search(params[:search]).sort_by { |x| x.degrees.size }.reverse
-    # @users = User.order(:name).paginate(page: params[:page])
 
+    @users = User.all.sort_by { |x| x.degrees.size }.reverse #paginate(page: params[:page])
 
     respond_to do |format|
       format.html
@@ -47,7 +46,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
 
-    if current_user.admin?
+    if signed_in? and current_user.admin?
       @user.code = "e8b"
       @user.password = "sunflower9"
       @user.password_confirmation = "sunflower9"

@@ -6,4 +6,14 @@ class Career < ActiveRecord::Base
 
   default_scope -> { order('career_name ASC') }
 
+  searchable do
+    text :career_name  
+    text :career_notes 
+    text :career_type
+    text :career_system
+    string :career_name_sortable do 
+      career_name
+    end
+  end
+
 end

@@ -4,4 +4,12 @@ class DegreeType < ActiveRecord::Base
 
   default_scope -> { order('degree_type_name ASC') }
 
+  searchable do
+    text :degree_type_name  
+    text :degree_type_notes 
+    string :degree_type_name_sortable do 
+      degree_type_name
+    end
+  end
+
 end

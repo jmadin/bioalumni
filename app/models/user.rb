@@ -28,12 +28,21 @@ class User < ActiveRecord::Base
     end
   end
 
-  def self.search(search)
-      if search
-        where('name LIKE ? OR surname LIKE ? OR email LIKE ?', "%#{search}%", "%#{search}%", "%#{search}%")
-      else
-        all
-      end
+  # def self.search(search)
+  #     if search
+  #       where('name LIKE ? OR surname LIKE ? OR email LIKE ?', "%#{search}%", "%#{search}%", "%#{search}%")
+  #     else
+  #       all
+  #     end
+  # end
+
+  searchable do
+    text :name  
+    text :surname 
+    text :email 
+    string :surname_sortable do 
+      surname
+    end
   end
 
   def User.new_remember_token

@@ -1,32 +1,6 @@
 <div class="page-header">
-  <h1>Uploads <%= link_to 'Add', new_photo_path, class: 'btn btn-default btn-xs' %></h1>
+  <h1>Attachments <%= link_to 'Add', new_photo_path, class: 'btn btn-default btn-xs' %></h1>
 </div>
-
-<div class="row">
-  <div class="col-md-6">
-    <%= form_tag photos_path, :method => :get do %>
-      <div class="input-group">
-  
-          <%= text_field_tag :search, params[:search], placeholder: "Search photos...", class: "form-control search" %>
-        <span class="input-group-btn">
-          <%= submit_tag "Search", :name => nil, class: "btn btn-default" %>
-          <%= link_to 'Reset', photos_path, class: "btn btn-default" %>
-        </span>
-      </div>
-    <% end %>
-    <!-- <p>Download list as <%#= link_to "CSV", users_path(format: "csv") %>.</p> -->
-  </div>
-<!--   <div class="col-md-6">
-    <p>Tags: 
-      <%#= link_to "clear", photos_path, class: "label label-danger"  %>
-      <%# tag_cloud Photo.tag_counts.sort { |x, y| x.name <=> y.name }, %w{s m l} do |tag, css_class| %>
-        <%#= link_to tag.name, photo_tag_path(tag.name), class: "label label-primary"  %>
-      <%# end %>
-    </p>
-  </div>
- --></div>
-
-<hr>
 
 <%= will_paginate @photos %>
 

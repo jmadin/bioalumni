@@ -44,6 +44,7 @@
     </li>
 
   <% @alums.joins(:degrees).order('graduation_year IS NOT NULL, graduation_year DESC').each do |alum| %>
+  <%# @alums.each do |alum| %>
     <li class="list-group-item">              
       <div class="row">
         <div class="col-md-3">
@@ -60,9 +61,10 @@
           <% end %>
         </div>
         <div class="col-md-3">
-          <%= link_to alum.degrees.last.degree_type.degree_type_name, degree_type_path(alum.degrees.last.degree_type), data: { no_turbolink: true } %>
-          <% if alum.degrees.last.graduation_year %>
-            (<%= alum.degrees.last.graduation_year.year %>)
+          <%#= link_to alum.degrees.last.degree_type.degree_type_name, degree_type_path(alum.degrees.last.degree_type), data: { no_turbolink: true } %>
+          <% last_degree = Degree.where("alum_id = ?", alum.id).last %>
+          <% if last_degree %>
+            (<%= last_degree.graduation_year %>)
           <% end %>
         </div>
         <div class="col-md-1">

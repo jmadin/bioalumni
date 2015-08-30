@@ -1,5 +1,5 @@
 class PhotosController < ApplicationController
-  before_action :signed_in_user, only: [:show, :index, :new, :edit, :update, :destroy]
+  before_action :signed_in_user
   before_action :set_photo, only: [:show, :edit, :update, :destroy]
 
   helper_method :sort_column, :sort_direction
@@ -9,7 +9,7 @@ class PhotosController < ApplicationController
   def index
     # @photos = Photo.order(sort_column + " " + sort_direction).paginate(page: params[:page], per_page: 10)
 
-    @photos = Photo.paginate(page: params[:page]).search(params[:search])
+    @photos = Photo.paginate(page: params[:page])
 
     if params[:tag]
       @photos = @photos.tagged_with(params[:tag])

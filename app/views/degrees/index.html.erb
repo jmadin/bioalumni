@@ -2,24 +2,6 @@
   <h1>Degrees</h1>
 </div>
 
-
-<div class="row">
-  <div class="col-md-6">
-    <%= form_tag degrees_path, :method => :get do %>
-      <div class="input-group">
-  
-          <%= text_field_tag :search, params[:search], placeholder: "Search thesis titles...", class: "form-control search" %>
-        <span class="input-group-btn">
-          <%= submit_tag "Search", :name => nil, class: "btn btn-default" %>
-          <%= link_to 'Reset', degree_types_path, data: { no_turbolink: true }, class: "btn btn-default" %>
-        </span>
-      </div>
-    <% end %>
-  </div>
-</div>
-
-<hr>
-
 <%= will_paginate @degrees %>
 
 <ul class="list-group">

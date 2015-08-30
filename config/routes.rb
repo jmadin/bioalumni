@@ -8,6 +8,8 @@ Biolumni::Application.routes.draw do
     resources :records
   end
 
+  resources :search 
+
   resources :degrees
   # resources :degrees do
   #   resources :users

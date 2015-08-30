@@ -9,12 +9,23 @@ class Degree < ActiveRecord::Base
   
   default_scope -> { order('graduation_year ASC') }
 
-  def self.search(search)
-      if search
-        where('thesis_title LIKE ?', "%#{search}%")
-      else
-        all
-      end
+  searchable do
+    text :thesis_title  
+    date :graduation_year 
+    text :degree_notes 
+    integer :alum_id 
+    string :graduation_year_str do 
+      graduation_year
+    end
   end
 
 end
+
+    # t.integer  "alum_id"
+    # t.date     "graduation_year"
+    # t.string   "thesis_title"
+    # t.text     "degree_notes"
+    # t.datetime "created_at"
+    # t.datetime "updated_at"
+    # t.integer  "degree_type_id"
+    # t.date     "approval_year"

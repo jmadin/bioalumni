@@ -18,11 +18,11 @@
           <li><%= link_to "Home", root_path, 'data-no-turbolink' => true %></li>
         </ul>
 
-        <ul class="nav navbar-nav navbar-left">
-            <li><%= link_to "Alumni", alums_path %></li>
-        </ul>
 
         <% if signed_in? %>
+          <ul class="nav navbar-nav navbar-left">
+              <li><%= link_to "Alumni", alums_path %></li>
+          </ul>
 
           <ul class="nav navbar-nav navbar-left">
             <li id="fat-menu" class="dropdown">
@@ -39,15 +39,11 @@
             </li>
           </ul>
 
-          <ul class="nav navbar-nav navbar-left">
-            <li>
-              <%= form_tag alums_path, class: "navbar-form navbar-left", :method => :get do %>
-                <div class="form-group">
-                  <%= text_field_tag :search, params[:search], { class: "form-control search", placeholder: "Search alumni..." }   %>
-                </div>
-              <% end %>
-            </li>
-          </ul>
+          <%= form_tag search_index_path, class: "navbar-form navbar-left", :method => :get do %>
+            <div class="form-group">
+              <%= text_field_tag :search, params[:search], { class: "form-control search", placeholder: "Search..." }   %>
+            </div>
+          <% end %>
 
         <% end %>
 

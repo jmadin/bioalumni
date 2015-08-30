@@ -1,5 +1,5 @@
 source 'http://rubygems.org'
-ruby '2.1.2'
+# ruby '2.1.2'
 #ruby-gemset=railstutorial_rails_4_0
 
 gem 'rails', '~> 4.0.3'
@@ -18,6 +18,13 @@ gem 'google_visualr', '~> 2.1.0'
 
 gem 'bootstrap-datepicker-rails'
 gem 'select2-rails'
+
+gem 'sunspot_rails'
+gem 'sunspot_solr'
+gem 'progress_bar'
+
+gem 'redcarpet'
+
 
 group :development, :test do
 end

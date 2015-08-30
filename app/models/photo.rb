@@ -12,12 +12,21 @@ class Photo < ActiveRecord::Base
 
   validates_attachment_content_type :photograph, :content_type => ["image/jpg", "image/jpeg", "image/png", "application/pdf"]
 
-  def self.search(search)
-      if search
-        where('photo_filename LIKE ? OR photo_notes LIKE ? OR photograph_file_name LIKE ?', "%#{search}%", "%#{search}%", "%#{search}%")
-      else
-        all
-      end
+  # def self.search(search)
+  #     if search
+  #       where('photo_filename LIKE ? OR photo_notes LIKE ? OR photograph_file_name LIKE ?', "%#{search}%", "%#{search}%", "%#{search}%")
+  #     else
+  #       all
+  #     end
+  # end
+
+  searchable do
+    text :photo_filename  
+    text :photo_notes 
+    text :photograph_file_name 
+    string :photo_filename_sortable do 
+      photo_filename
+    end
   end
 
 end

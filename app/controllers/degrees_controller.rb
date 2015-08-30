@@ -6,8 +6,7 @@ class DegreesController < ApplicationController
   # GET /degrees.json
   def index
 #    @degrees = Degree.all
-
-    @degrees = Degree.paginate(page: params[:page]).search(params[:search])
+    @degrees = Degree.paginate(page: params[:page])
 
   end
 
