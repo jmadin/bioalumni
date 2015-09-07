@@ -10,12 +10,12 @@ class Alum < ActiveRecord::Base
 
   acts_as_taggable
 
-
   searchable do
     text :mq_id  
     text :first_name  
     text :last_name  
     text :alum_notes  
+    text :tag_list
 
     # join(:graduation_year, :target => Degree, :type => :string, :join => { :from => :alum_id, :to => :id })
     # string :graduation_year_sortable do 
