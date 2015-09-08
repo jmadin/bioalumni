@@ -22,28 +22,7 @@
 <%= will_paginate @alums %>
 
 <ul class="list-group">
-    <li class="list-group-item">              
-      <div class="row">
-        <div class="col-md-3">
-          <strong>Name</strong>
-        </div>
-        <div class="col-md-3">
-          <strong>Last career</strong>
-        </div>
-        <div class="col-md-3">
-          <strong>Last degree</strong>
-        </div>
-        <div class="col-md-1">
-          <strong>Uploads</strong>
-        </div>
-        <div class="col-md-2">
-          <div class="btn-group pull-right">
-          </div>
-        </div>
-      </div>
-    </li>
-
-  <% @alums.joins(:degrees).order('graduation_year IS NOT NULL, graduation_year DESC').each do |alum| %>
+  <% @alums.order_degrees.each do |alum| %>
   <%# @alums.each do |alum| %>
     <li class="list-group-item">              
       <div class="row">
@@ -51,6 +30,17 @@
           <%= link_to "#{alum.first_name} #{alum.last_name}", alum %>
         </div>
         <div class="col-md-3">
+          <% last_degree = Degree.where("alum_id = ?", alum.id).last %>
+          <% if last_degree %>
+            <%= last_degree.degree_type.degree_type_name %>
+            <% if last_degree.graduation_year %>
+              (<%= last_degree.graduation_year.year %>)
+            <% else %>
+              (<font style="color:lightgrey;">No date</font>)
+            <% end %>
+          <% end %>
+        </div>
+        <div class="col-md-4">
           <% if alum.records.exists? %>
             <%= link_to alum.records.last.career.career_name, career_path(alum.records.last.career), data: { no_turbolink: true } %>
             <% if alum.records.last.until_date %>
@@ -58,18 +48,8 @@
             <% else %>
               (present)
             <% end %>
-          <% end %>
-        </div>
-        <div class="col-md-3">
-          <%#= link_to alum.degrees.last.degree_type.degree_type_name, degree_type_path(alum.degrees.last.degree_type), data: { no_turbolink: true } %>
-          <% last_degree = Degree.where("alum_id = ?", alum.id).last %>
-          <% if last_degree %>
-            (<%= last_degree.graduation_year %>)
-          <% end %>
-        </div>
-        <div class="col-md-1">
-          <% if alum.photos.exists? %>
-            <span class="badge"><%= alum.photos.size %></span>
+          <% else %>
+            <font style="color:lightgrey;">Career not entered</font>
           <% end %>
         </div>
         <div class="col-md-2">

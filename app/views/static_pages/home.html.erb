@@ -19,14 +19,22 @@
         <br>
       <% end %>
       <div class="row">
-        <div class="col-lg-6">
+        <div class="col-md-12">
           <script src='http://www.google.com/jsapi'></script>
           <div id='chart1'></div>
           <%= render_chart @chart_careers, 'chart1' %>   <br>           
         </div>
-        <div class="col-lg-6">
+      </div>
+      <div class="row">
+        <div class="col-md-12">
           <div id='chart2'></div>
-          <%= render_chart @chart_phds, 'chart2' %>              
+          <%= render_chart @chart_phds, 'chart2' %>     <br>         
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div id='chart3'></div>
+          <%= render_chart @chart_sex, 'chart3' %>         <br>     
         </div>
       </div>
     </div>

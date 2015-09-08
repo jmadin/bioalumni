@@ -34,7 +34,7 @@ class RecordsController < ApplicationController
     if @record.save
       redirect_to alum_path(@record.alum), flash: {success: "Record was successfully created." }
     else
-      render :new
+      render :new #, :alum_id => record_params[:alum_id]
     end
   end
 

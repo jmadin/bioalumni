@@ -1,6 +1,7 @@
 class AlumsController < ApplicationController
   before_action :signed_in_user
   before_action :set_alum, only: [:show, :edit, :update, :destroy]
+  before_action :admin_user, only: :destroy
 
   helper_method :sort_column, :sort_direction
 
@@ -10,7 +11,7 @@ class AlumsController < ApplicationController
     @alums = Alum.paginate(page: params[:page])
 
     if params[:tag]
-      @alums = @alums.tagged_with(params[:tag])
+      @alums = @alums.tagged_with(params[:tag]).uniq
     end
   end
 

@@ -8,8 +8,7 @@
   <div class="form-group">
     <% if @record.alum %>
       <%= f.hidden_field :alum_id, :value => @record.alum.id %>
-      <%= f.label :alumni_name %><br>
-      <%= @record.alum.first_name %> <%= @record.alum.last_name %>
+      <%= f.label :alumni_name %>: <%= link_to "#{@record.alum.first_name} #{@record.alum.last_name}", alum_path(@record.alum) %>
     <% else %>
       <%= f.label :alumni_name %><br>
       <%= f.select :alum_id, Alum.all.map { |u| ["#{u.first_name} #{u.last_name}", u.id] }, { selected: params[:alum_id] }, class: "form-control" %>

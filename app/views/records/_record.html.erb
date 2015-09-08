@@ -9,21 +9,28 @@
       <% end %>
     </div>
     <div class="col-md-2">
-      <%= record.record_date %> to<br> 
+      <% if record.record_date %>
+        <%= record.record_date.year %>
+      <% else %>
+        ?
+      <% end %>
+       - 
       <% if record.until_date %>
         <%= record.until_date %>
       <% else %>
         Present
       <% end %>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-4">
       <%= record.position_title %>
+      (<%= record.company_name %>)
     </div>
     <div class="col-md-2">
-      <%= record.company_name %>
-    </div>
-    <div class="col-md-2">
-      <%= mail_to record.email %>
+      <% if record.email.present? %>
+        <%= mail_to record.email %>
+      <% else %>
+        <font style="color:lightgrey;">No email</font>
+      <% end %>
     </div>
     <div class="col-md-2">
       <div class="btn-group pull-right">
@@ -34,7 +41,6 @@
           <%= link_to 'Show', record_path(record), class: "btn btn-xs btn-default" %>
         <% end %>
         <%= link_to 'Edit', edit_record_path(record), class: "btn btn-xs btn-default" %>
-        <%= link_to 'Delete', record, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-danger" %>
       </div>
 
     </div>

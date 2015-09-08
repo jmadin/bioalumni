@@ -43,9 +43,12 @@
 
 
     <div class="btn-group">
-      <%= link_to 'Edit', edit_degree_path(@degree), class: "btn btn-sm btn-default" %>
-      <%= link_to 'Back', alum_path(@degree.alum), class: "btn btn-sm btn-default" %>
+      <%= link_to 'Edit', edit_degree_path(@degree), class: "btn btn-xs btn-default" %>
+      <%= link_to 'Back', alum_path(@degree.alum), class: "btn btn-xs btn-default" %>
     </div>
+    <% if current_user.admin %>
+      <%= link_to 'Delete', @degree, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-danger pull-right" %>
+    <% end %>
 
   </div>
 </div>

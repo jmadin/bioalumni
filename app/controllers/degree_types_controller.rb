@@ -15,7 +15,7 @@ class DegreeTypesController < ApplicationController
       data_table.add_row([i.degree_type_name, Degree.where("degree_type_id = ?", i.id).size])
     end
 
-    option = { width: 400, height: 300 }
+    option = { width: 500, height: 300 }
     @chart_careers = GoogleVisualr::Interactive::PieChart.new(data_table, option)
 
 

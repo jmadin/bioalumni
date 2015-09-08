@@ -32,9 +32,10 @@
         </p>
 
         <div class="btn-group">
-          <%= link_to 'Edit', edit_photo_path(@photo), class: "btn btn-sm btn-default" %>
-          <%= link_to 'Back', alum_path(@photo.alum), class: "btn btn-sm btn-default" %>
+          <%= link_to 'Edit', edit_photo_path(@photo), class: "btn btn-xs btn-default" %>
+          <%= link_to 'Back', alum_path(@photo.alum), class: "btn btn-xs btn-default" %>
         </div>
+        <%= link_to 'Delete', @photo, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-danger pull-right" %>
 
       </div><br>
       <div class="col-md-6">

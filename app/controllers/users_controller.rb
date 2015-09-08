@@ -17,8 +17,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-
-    @alums = Alum.where(:id => @user.degrees.map(&:alum_id)).paginate(page: params[:page], per_page: 25)
+    @degrees = @user.degrees.paginate(page: params[:page], per_page: 25)
 
     if @alums.present? && @user.degrees.where('graduation_year IS NOT NULL').present?
       data_table = GoogleVisualr::DataTable.new

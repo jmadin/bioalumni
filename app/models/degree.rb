@@ -7,7 +7,7 @@ class Degree < ActiveRecord::Base
 
   validates :degree_type, :presence => true
   
-  default_scope -> { order('graduation_year ASC') }
+  default_scope -> { order('graduation_year DESC') }
 
   searchable do
     text :thesis_title  

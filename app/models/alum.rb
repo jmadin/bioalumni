@@ -1,11 +1,15 @@
 class Alum < ActiveRecord::Base
   belongs_to :user
-  has_many :degrees
-  has_many :records
-  has_many :photos
+  has_many :degrees, :dependent => :destroy
+  has_many :records, :dependent => :destroy
+  has_many :photos, :dependent => :destroy
 
   validates :first_name, :presence => true
   validates :last_name, :presence => true, :uniqueness => {:scope => [:first_name, :middle_name], :message => "and first name combination already exists. If this is indeed correct, please add a middle name to distinguish between the two people."} 
+
+  scope :order_degrees, -> { 
+    joins(:degrees).order('graduation_year DESC') 
+  }
 
 
   acts_as_taggable

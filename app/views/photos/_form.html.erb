@@ -5,7 +5,7 @@
 
   <% if @photo.alum %>
     <%= f.hidden_field :alum_id, :value => @photo.alum.id %>
-    <%= f.label :alumni_name %>: <%= @photo.alum.first_name %> <%= @photo.alum.last_name %>
+    <%= f.label :alumni_name %>: <%= link_to "#{@photo.alum.first_name} #{@photo.alum.last_name}", alum_path(@photo.alum) %>
   <% else %>
     <%= f.select :alum_id, Alum.all.map { |u| ["#{u.first_name} #{u.last_name}", u.id] }, { selected: params[:alum_id] }, class: "form-control" %>
   <% end %>

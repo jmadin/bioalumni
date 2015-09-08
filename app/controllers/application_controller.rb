@@ -14,7 +14,10 @@ class ApplicationController < ActionController::Base
   end
 
   def admin_user
-    redirect_to(root_url) unless current_user.admin?
+    if not current_user.admin?
+      flash[:danger] = "Contact <a href='mailto:joshua.madin@mq.edu.au' >joshua.madin@mq.edu.au</a> to make this change.".html_safe 
+      redirect_back_or request.referer
+    end
   end
 
   private

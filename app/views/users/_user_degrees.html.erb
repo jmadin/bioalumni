@@ -1,0 +1,42 @@
+<% if @degrees.blank? %>
+	<p class="alert alert-danger">No alumni yet.</p>
+<% else %>
+
+<%= will_paginate @degrees %>
+
+<ul class="list-group">
+
+  <% @degrees.each do |degree| %>
+    <li class="list-group-item">              
+      <div class="row">
+        <div class="col-md-3">
+          <% if degree.alum %>
+            <%= link_to "#{degree.alum.first_name} #{degree.alum.last_name}", degree %>
+          <% end %>
+        </div>
+        <div class="col-md-2">
+          <%= degree.degree_type.degree_type_name %> (<%= degree.graduation_year.year %>)
+        </div>
+        <div class="col-md-2">
+          
+        </div>
+        <div class="col-md-2">
+          <%# if Career.find_by_id(alum.records.map(&:career_id).last) %>
+            <%#= Career.find_by_id(alum.records.map(&:career_id).last).career_name %>
+          <%# end %>
+        </div>
+        <div class="col-md-3">
+          <div class="btn-group pull-right">
+            <%= link_to 'Show', degree, class: "btn btn-xs btn-default" %>
+            <%= link_to 'Edit', edit_degree_path(degree), class: "btn btn-xs btn-default" %>
+          </div>
+        </div>
+      </div>
+    </li>
+  <% end %>
+</ul>
+
+<%= will_paginate @degrees %>
+
+<% end %>
+

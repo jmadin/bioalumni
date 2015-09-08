@@ -5,38 +5,69 @@
 </div>
 
 <div class="row">
-  <div class="col-md-8">
+  <div class="col-md-7">
+
     <p>
       <strong>Sex:</strong>
-      <%= @alum.sex %>
+      <% if @alum.sex.present? %>
+        <%= @alum.sex %>
+      <% else %>
+        <font style="color:lightgrey;">None</font>
+      <% end %>
     </p>
+
 
     <p>
       <strong>Date of birth:</strong>
-      <%= @alum.dob %>
+      <% if @alum.dob.present? %>
+        <%= @alum.dob %>
+      <% else %>
+        <font style="color:lightgrey;">None</font>
+      <% end %>
     </p>
 
     <p>
-      <strong>Mq:</strong>
-      <%= @alum.mq_id %>
+      <strong>Macquarie ID:</strong>
+      <% if @alum.mq_id.present? %>
+        <%= @alum.mq_id %>
+      <% else %>
+        <font style="color:lightgrey;">None</font>
+      <% end %>
     </p>
 
     <p>
       <strong>Notes:</strong>
-      <%= @alum.alum_notes %>
+      <% if @alum.alum_notes.present? %>
+        <%= @alum.alum_notes %>
+      <% else %>
+        <font style="color:lightgrey;">None</font>
+      <% end %>
     </p>
 
     <p>
       <strong>Tags:</strong>
-      <%= raw @alum.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
+      <% if @alum.tag_list.present? %>
+        <%= raw @alum.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
+      <% else %>
+        <font style="color:lightgrey;">None</font>
+      <% end %>
     </p>
+
+<div class="btn-group">
+  <%= link_to 'Edit', edit_alum_path(@alum), class: "btn btn-xs btn-default" %>
+  <%= link_to 'Back', alums_path, class: "btn btn-xs btn-default" %>
+</div>
+  <%= link_to 'Delete Alumnus', @alum, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-danger pull-right" %>
+
   </div>
-  <div class="col-md-4">
+  <div class="col-md-5">
     <div class="well">
       <p>
         <strong>LinkedIn:</strong>
         <% if @alum.linked_in.present? %>
           <%= link_to @alum.linked_in, @alum.linked_in, target: "_blank" %>
+        <% else %>
+          <font style="color:lightgrey;">None</font>
         <% end %>
       </p>
 
@@ -44,6 +75,8 @@
         <strong>Twitter:</strong>
         <% if @alum.twitter.present? %>
           <%= link_to @alum.twitter, "https://twitter.com/" + @alum.twitter, target: "_blank" %>
+        <% else %>
+          <font style="color:lightgrey;">None</font>
         <% end %>
       </p>
 
@@ -51,20 +84,14 @@
         <strong>Facebook:</strong>
         <% if @alum.facebook.present? %>
           <%= link_to @alum.facebook, @alum.facebook, target: "_blank" %>
+        <% else %>
+          <font style="color:lightgrey;">None</font>
         <% end %>
       </p>
     </div>
   </div>
 </div>
 
-<div class="btn-group">
-  <%= link_to 'Edit', edit_alum_path(@alum), class: "btn btn-sm btn-default" %>
-  <%= link_to 'Back', alums_path, class: "btn btn-sm btn-default" %>
-</div>
-
-<hr>
-<p>Below you can enter information about <%= @alum.first_name %> <%= @alum.last_name %>, such as other degrees, what they're doing now (career records) and photographs.  Once you have entered information, you can edit these entries to add other details, such as notes. Let Lara (<%= mail_to "lara.ainley@students.mq.edu.au" %>) know if you don't know how to fit something.</p>
-<p><label class="label label-danger">Warning</label> Please don't delete entries unless you are sure they don't belong.</p>
 
 
 

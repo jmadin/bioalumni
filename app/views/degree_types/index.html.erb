@@ -1,16 +1,20 @@
 
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-lg-6">
     <div class="page-header">
       <h1>Degrees types <%= link_to 'Add', new_degree_type_path, class: "btn btn-default btn-xs" %></h1>
     </div>
 
     <!-- <p>Download list as <%#= link_to "CSV", users_path(format: "csv") %>.</p> -->
   </div>
-  <div class="col-md-6">
-    <script src='http://www.google.com/jsapi'></script>
-    <div id='chart1'></div>
-    <%= render_chart @chart_careers, 'chart1' %>              
+  <div class="col-lg-6">
+    <ul class="list-group">
+      <li class="list-group-item">              
+        <script src='http://www.google.com/jsapi'></script>
+        <div id='chart1'></div>
+        <%= render_chart @chart_careers, 'chart1' %>
+      </li>
+    </ul>         
   </div>
 </div>
 

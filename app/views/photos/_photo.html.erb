@@ -9,7 +9,7 @@
       <% end %>
     </div>
     <div class="col-md-2">
-      <%= photo.photo_date %>
+      <%= photo.photo_date.year %>
     </div>
     <div class="col-md-3">
       <%= photo.photo_filename %>
@@ -21,7 +21,6 @@
       <div class="btn-group pull-right">
         <%= link_to 'Show', photo, class: "btn btn-xs btn-default" %>
         <%= link_to 'Edit', edit_photo_path(photo), class: "btn btn-xs btn-default" %>
-        <%= link_to 'Delete', photo, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-danger" %>
       </div>
 
     </div>
