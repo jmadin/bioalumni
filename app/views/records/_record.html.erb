@@ -23,7 +23,7 @@
     </div>
     <div class="col-md-4">
       <%= record.position_title %>
-      <% if not record.company_name.present? %>
+      <% if record.company_name and record.company_name != "" %>
         (<%= record.company_name %>)
       <% end %>
     </div>
