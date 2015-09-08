@@ -2,7 +2,7 @@
 	<p class="alert alert-danger">No alumni yet.</p>
 <% else %>
 
-<%= will_paginate @degrees %>
+<%#= will_paginate @degrees %>
 
 <ul class="list-group">
 
@@ -15,15 +15,19 @@
           <% end %>
         </div>
         <div class="col-md-2">
-          <%= degree.degree_type.degree_type_name %> (<%= degree.graduation_year.year %>)
+          <%= degree.degree_type.degree_type_name %> 
+          <% if degree.graduation_year %>
+            (<%= degree.graduation_year.year %>)
+          <% else %>
+            (<font style="color:lightgrey;">No year</font>)
+          <% end %>
         </div>
-        <div class="col-md-2">
-          
-        </div>
-        <div class="col-md-2">
-          <%# if Career.find_by_id(alum.records.map(&:career_id).last) %>
-            <%#= Career.find_by_id(alum.records.map(&:career_id).last).career_name %>
-          <%# end %>
+        <div class="col-md-4">
+          <% if degree.thesis_title == "NA" or not degree.thesis_title.present? %>
+            <font style="color:lightgrey;">No title</font>
+          <% else %>
+            <em><%= degree.thesis_title %></em>
+          <% end %>
         </div>
         <div class="col-md-3">
           <div class="btn-group pull-right">
@@ -36,7 +40,7 @@
   <% end %>
 </ul>
 
-<%= will_paginate @degrees %>
+<%#= will_paginate @degrees %>
 
 <% end %>
 

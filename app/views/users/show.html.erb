@@ -11,20 +11,22 @@
     </p>
 
     <p>
-      Count: <span class="badge"><%= @degrees.count %></span>
+      <span class="badge"><%= @degrees.count %></span> degrees
     </p>
   </div>
   <div class="col-md-6">
     
     <% if @chart_phds %>
-      <script src='http://www.google.com/jsapi'></script>
-      <div id='chart2'></div>
-      <%= render_chart @chart_phds, 'chart2' %>              
+      <ul class="list-group">
+        <li class="list-group-item">              
+          <script src='http://www.google.com/jsapi'></script>
+          <div id='chart2'></div>
+          <%= render_chart @chart_phds, 'chart2' %>              
+        </li>
+      </ul>         
     <% end %>
   </div>
 </div>
-
-<p><label class="label label-danger">Warning</label> Please don't delete entries unless you are really sure they don't belong.</p>
 
 <%= render "user_degrees" %>
 
