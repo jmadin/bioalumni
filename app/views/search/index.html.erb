@@ -64,7 +64,7 @@
 		<ul class="list-group">
 			<% @career_search.results.each do |s| %>
 	     	<li class="list-group-item">							
-					<%= link_to s.career_name, s %>
+					<%= link_to s.career_name, s, data: { no_turbolink: true } %>
 				</li>
 			<% end %>
 		</ul>
@@ -77,7 +77,7 @@
 		<ul class="list-group">
 			<% @degree_type_search.results.each do |s| %>
 	     	<li class="list-group-item">							
-					<%= link_to s.degree_type_name, s %>
+					<%= link_to s.degree_type_name, s, data: { no_turbolink: true } %>
 				</li>
 			<% end %>
 		</ul>
@@ -91,7 +91,7 @@
 		<ul class="list-group">
 			<% @user_search.results.each do |s| %>
 	     	<li class="list-group-item">							
-					<%= link_to "#{s.name} #{s.surname}", s %>
+					<%= link_to "#{s.name} #{s.surname}", s, data: { no_turbolink: true } %>
 				</li>
 			<% end %>
 		</ul>
