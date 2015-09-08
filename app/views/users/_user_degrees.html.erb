@@ -11,7 +11,7 @@
       <div class="row">
         <div class="col-md-3">
           <% if degree.alum %>
-            <%= link_to "#{degree.alum.first_name} #{degree.alum.last_name}", degree %>
+            <%= link_to "#{degree.alum.first_name} #{degree.alum.last_name}", degree.alum %>
           <% end %>
         </div>
         <div class="col-md-2">
@@ -27,7 +27,7 @@
         </div>
         <div class="col-md-3">
           <div class="btn-group pull-right">
-            <%= link_to 'Show', degree, class: "btn btn-xs btn-default" %>
+            <%= link_to 'Show', degree.alum, class: "btn btn-xs btn-default" %>
             <%= link_to 'Edit', edit_degree_path(degree), class: "btn btn-xs btn-default" %>
           </div>
         </div>
