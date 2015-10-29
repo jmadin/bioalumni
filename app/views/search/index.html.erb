@@ -1,4 +1,4 @@
-<div class="col-md-8">
+<div class="col-md-12">
 
 	<div class="page-header">
 	  <h1>Search</h1>
@@ -51,7 +51,7 @@
 			<% @degree_search.results.each do |s| %>
 	     	<li class="list-group-item">							
 					<%#= link_to s.id, s %>
-					<%= link_to "#{s.alum.first_name} #{s.alum.last_name}", s %> <small>(<%= s.degree_type.degree_type_name %>, <%= s.graduation_year.year %>) <%= s.thesis_title %></small>
+					<%= link_to "#{s.alum.first_name} #{s.alum.last_name}", s %> <small>(<%= s.degree_type.degree_type_name %>, <%= s.graduation_year.year if s.graduation_year %>) <%= s.thesis_title %></small>
 				</li>
 			<% end %>
 		</ul>
