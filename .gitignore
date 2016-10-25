@@ -26,6 +26,7 @@ notes_josh.md
 .ruby-*
 .secret
 
+solr/
 /solr/data
 /solr/default
 /solr/development
