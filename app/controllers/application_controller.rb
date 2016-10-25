@@ -20,6 +20,37 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def export_alumni  
+
+    @all = Alum.find_by_sql("
+      SELECT *, degrees.id as deg_id
+      FROM alums 
+      LEFT OUTER JOIN degrees ON alums.id = degrees.alum_id
+      LEFT OUTER JOIN degree_types ON degrees.degree_type_id = degree_types.id
+    ") 
+
+    csv_string = CSV.generate do |csv|   
+      csv << [
+        "id", "first_name", "middle_name", "last_name", "sex", "dob", "mq_id", "linked_in", "twitter", "facebook", "degree_type_name", "graduation_year", "supervisor/s"]
+
+      @all.each do |i|
+        sups = DegreesUser.where("degree_id IS ?", i.deg_id).map(&:user_id)
+        sups = User.where("id IN (?)", sups).map { |s| "#{s.name} #{s.surname}" }.join(';')
+        puts sups
+
+        if i.graduation_year.present?
+          i.graduation_year = Date.parse(i.graduation_year).strftime("%Y")
+        end
+
+        csv << [
+          i.id, i.first_name, i.middle_name, i.last_name, i.sex, i.dob, i.mq_id, i.linked_in, i.twitter, i.facebook, i.degree_type_name, i.graduation_year, sups]
+        end 
+    end 
+    send_data csv_string, 
+        :type => 'text/csv; charset=iso-8859-1; header=present', :stream => true,
+        :disposition => "attachment; filename=alumni_#{Date.today.strftime('%Y%m%d')}.csv" 
+  end  
+
   private
 
     def set_last_seen_at

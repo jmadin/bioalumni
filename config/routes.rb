@@ -36,6 +36,8 @@ Biolumni::Application.routes.draw do
   get 'photo_tags/:tag', to: 'photos#index', as: :photo_tag
 
   # root to: 'photos#index'
+
+  match 'export_alumni' => 'alums#export_alumni', via: 'get'
   
   root to: 'static_pages#home'
   match '/signup',  to: 'users#new',            via: 'get'

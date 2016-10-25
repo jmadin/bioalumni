@@ -11,6 +11,14 @@ class Alum < ActiveRecord::Base
     joins(:degrees).order('graduation_year DESC') 
   }
 
+  def self.to_csv(options = {})
+    CSV.generate(options) do |csv|
+      csv << column_names
+      all.each do |alum|
+        csv << alum.attributes.values_at(*column_names)
+      end
+    end
+  end
 
   acts_as_taggable
 
